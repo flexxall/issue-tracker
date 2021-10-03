@@ -1,9 +1,11 @@
 import React from "react";
 import { Row, Col, Card, CardText, CardSubtitle } from 'reactstrap';
+import AddIssue from '../AddIssue/AddIssue.js'
+
 import './CurrentIssue.css';
 
-function CurrentIssue() {
-  
+function CurrentIssue(props) {
+  console.log("Test " + AddIssue.description)
   return (
     <div className="current-issues">
       <Card className="col-12">
@@ -26,6 +28,11 @@ function CurrentIssue() {
             to fill up a few lines of text so there is some body to the issues
             reported.
           </CardText>
+        </Row>
+      </Card>
+      <Card className="col-12">
+      <Row className="pt-2">
+          {AddIssue.props}
         </Row>
       </Card>
     </div>

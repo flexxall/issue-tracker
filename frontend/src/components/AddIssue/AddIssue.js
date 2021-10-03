@@ -3,17 +3,21 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import './AddIssue.css';
 
-function AddIssue() {
-  const {desc, setDes} = useState(true);
+function AddIssue(e) {
+  const [description, setDescription] = useState("");
   const {dev, setDev} = useState(true);
   const {priority, setPriority} = useState(true);
-
+console.log(description)
   return (    
       <Form className="add-issue">
         <FormGroup>
           <Label for="description">Description</Label>
-            <Input className="input" id="description" placeholder="Description of Issue..."
-              onChange={() => console.log(document.getElementById("description").value)}
+            <Input 
+              className="input" 
+              id="description" 
+              /*value={description}*/
+              onSubmit={e => setDescription(e.target.value)}
+              placeholder="Description of Issue..."
             />
         </FormGroup>
         <FormGroup>
