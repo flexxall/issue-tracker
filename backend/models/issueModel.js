@@ -1,26 +1,11 @@
 import mongoose from 'mongoose'
 
-const issueSchema = mongoose.Schema
+const Schema = mongoose.Schema
 
-const issueSchema = new Schema({
-	priority: {
-		type: Number,
-		min: 1,
-		max: 4,
-		required: true
-	},
-	description: {
-		type: String,
-		required: true
-	},
-	author: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User'
-	},
-  asignee: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }
+const issueSchema = new Schema({	
+	description: String,
+	forDev: String,
+	priority: String
 },{
 	timestamps: true
 });

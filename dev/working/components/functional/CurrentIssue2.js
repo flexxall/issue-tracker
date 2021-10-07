@@ -38,6 +38,51 @@ function CurrentIssue() {
       )}
     </div>
   )
+  //<div className='current-issue'>
+  //  {issues.map((issue, pos) =>
+  //  <div key={pos}>
+  //    <h1>Test{issue.forDev}</h1>
+  //  </div>
+  //  )}
+  //</div>
+
+  /* const issueCards = issues.map((issue, pos) => {
+    return (
+      <div className="current-issues" key={pos}>
+        
+        <Card className="col-12">
+          <Row className="pt-2">
+            <Col className="col-sm-10">
+              
+                <CardText>Assigned to: <span>{issue.forDev}</span></CardText>
+              
+            </Col>
+            <Col className="col-sm-2">Close Issue</Col>
+          </Row>
+          <Row className="pt-2">
+            
+              <CardText>Priority: <span>{issue.priority}</span></CardText>
+              
+          </Row>
+          <Row className="pt-2">          
+            <CardSubtitle className="text-left">Description</CardSubtitle>          
+          </Row>
+          <Row className="pt-2">
+            
+              <CardText className="description-text">
+                {issue.description}
+              </CardText>
+            
+          </Row>
+        </Card>
+      </div>
+    );
+  })
+  return (
+    <div>
+      {issueCards}
+    </div>
+  ) */
 }
 
 export default CurrentIssue;
