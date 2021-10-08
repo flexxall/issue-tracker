@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import connectDB  from './config/connectDB.js'
 import issueRouter from './routes/issueRouter.js'
-import currentIssueRouter from './routes/currentIssueRouter.js'
+//import currentIssueRouter from './routes/currentIssueRouter.js'
 
 const app = express()
 
@@ -14,7 +14,8 @@ connectDB()
 
 //require route
 app.use('/', issueRouter)
-app.use('/currentIssue', currentIssueRouter)
+//app.use('/currentIssue', currentIssueRouter)
+app.use('/issue', issueRouter)
 
 //Creating API for user
 //app.use('/api/users', userRouter)

@@ -3,7 +3,7 @@ import Issue from '../models/issueModel.js'
 
 const issueRouter = express.Router()
 
-issueRouter.use(express.json());
+//issueRouter.use(express.json());
 
 // express router method to create route for getting all users
 issueRouter.route('/')
@@ -17,11 +17,13 @@ issueRouter.route('/')
     .catch((err) => next(err));		
   });
 //.post(addIssue)
-
+//.put
+//.delete
 // express router method to create route for getting users by id
 //issueRouter.route('/:id').get(getIssuesById)
 
-issueRouter.route('/createIssue')
+issueRouter.route('/issue')
+  //.get
   .post((req, res) => {
     const description = req.body.description
     const forDev = req.body.forDev
@@ -31,7 +33,8 @@ issueRouter.route('/createIssue')
       forDev,
       priority
     })
-
     newIssue.save()
   })
+  //.put
+  //.delete
 export default issueRouter
