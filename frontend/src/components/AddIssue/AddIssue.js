@@ -31,7 +31,7 @@ function AddIssue() {
       priority: input.priority
     }
 
-    axios.post('http://localhost:5000/issue', newIssue)
+    axios.post('http://127.0.0.1:5000/api/issues', newIssue)
   }
 
   return (

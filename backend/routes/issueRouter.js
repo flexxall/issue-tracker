@@ -3,27 +3,24 @@ import Issue from '../models/issueModel.js'
 
 const issueRouter = express.Router()
 
-//issueRouter.use(express.json());
-
-// express router method to create route for getting all users
 issueRouter.route('/')
   .get((req, res, next) => {
     Issue.find({})
     .then((issue) => {
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/json');
-      res.json(issue);
+      res.statusCode = 200
+      res.setHeader('Content-Type', 'application/json')
+      res.json(issue)
     }, (err) => next(err))
-    .catch((err) => next(err));		
-  });
+    .catch((err) => next(err));	
+  })
 //.post(addIssue)
 //.put
 //.delete
 // express router method to create route for getting users by id
 //issueRouter.route('/:id').get(getIssuesById)
 
-issueRouter.route('/issue')
-  //.get
+issueRouter.route('/api/issues')
+
   .post((req, res) => {
     const description = req.body.description
     const forDev = req.body.forDev
