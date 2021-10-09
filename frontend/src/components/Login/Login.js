@@ -7,7 +7,7 @@ import './Login.css';
 function Login() {
 
   const [input, setInput] = useState({
-    userName: '',
+    email: '',
     password: ''
   })
 
@@ -34,13 +34,13 @@ function Login() {
     
     <Form className="login">
       <FormGroup>
-        <Label className="label">Username</Label>
-        <Input className="input" name="userName" placeholder="Username" id="username" value={input.userName} autoComplete="off" 
+        <Label className="label">Email</Label>
+        <Input className="input" name="email" type="email" placeholder="Email address" id="email" value={input.email} autoComplete="off" 
           onChange={handleChange} />
       </FormGroup>
       <FormGroup>
         <Label className="label">Password</Label>
-        <Input className="input" name="password" placeholder="Password" id="password" value={input.password} autoComplete="off" 
+        <Input className="input" name="password" type="password" placeholder="Password" id="password" value={input.password} autoComplete="off" 
           onChange={handleChange} />          
       </FormGroup>
       <Button type="submit" color="info" className="mt-4"

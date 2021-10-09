@@ -1,0 +1,19 @@
+{
+  "name": "issue-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "main": "server.js",
+  "proxy": "http://127.0.0.1:5000",
+  "scripts": {
+    "start": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm start\" \"npm run client\""
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.3.0",
+    "nodemon": "^2.0.13"
+  }
+}
