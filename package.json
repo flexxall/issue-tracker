@@ -1,16 +1,27 @@
 {
-  "name": "issue-tracker",
+  "name": "backend",
   "version": "1.0.0",
-  "private": true,
   "main": "server.js",
+  "type": "module",
   "proxy": "http://127.0.0.1:5000",
   "scripts": {
     "start": "nodemon backend/server",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm start\" \"npm run client\""
   },
+  "author": "Steve Fisher",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.8",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.1.0"
   },
   "devDependencies": {
     "concurrently": "^6.3.0",
