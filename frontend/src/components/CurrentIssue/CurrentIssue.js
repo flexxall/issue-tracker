@@ -7,7 +7,7 @@ function CurrentIssue() {
   const [issues, setIssue] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/issues")
+    fetch("http://127.0.0.1:5000/issues")
       .then((res) => res.json())
       .then((issue) => setIssue([...issue]));
   }, []);

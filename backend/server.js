@@ -18,7 +18,7 @@ connectDB();
 //require route
 //app.use("/");
 app.use("/issues", issueRouter);
-app.use("/api/issues", issueRouter);
+//app.use("/api/issues", issueRouter);
 
 //Creating API for user
 app.use("/api/users", userRouter);

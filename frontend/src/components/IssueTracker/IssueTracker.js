@@ -27,8 +27,22 @@ function IssueTracker() {
 
   return (
     <div className="App">
-      <img src={Logo} className="logo-sm" alt="logo" />
       <div className="issue-container">
+        <Row className="">
+          <Col className="clearfix col-xs-12">
+            <img src={Logo} className="logo-sm float-start mx-5" alt="logo" />
+          </Col>
+          <Col className="clearfix col-xs-12">
+            <Button
+              className="mt-5 float-end mx-5"
+              href="/"
+              color="info"
+              size="lg"
+            >
+              Logout
+            </Button>
+          </Col>
+        </Row>
         <Nav tabs>
           <NavItem className="btn">
             <NavLink
@@ -90,11 +104,6 @@ function IssueTracker() {
             </Row>
           </TabPane>
         </TabContent>
-        <Col>
-          <Button className="mt-4" href="/" color="info" size="lg">
-            Logout
-          </Button>
-        </Col>
       </div>
     </div>
   );

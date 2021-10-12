@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import CurrentIssue from "../CurrentIssue/CurrentIssue";
-//import axios from 'axios'
 
 import "./Login.css";
 
