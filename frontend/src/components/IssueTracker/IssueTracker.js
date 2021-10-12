@@ -13,6 +13,7 @@ import {
 import AddIssue from "../AddIssue/AddIssue";
 import CurrentIssue from "../CurrentIssue/CurrentIssue";
 import DevIssue from "../DevIssue/DevIssue";
+import Logo from "./logo.png";
 
 import "../../App.css";
 
@@ -26,6 +27,7 @@ function IssueTracker() {
 
   return (
     <div className="App">
+      <img src={Logo} className="logo-sm" alt="logo" />
       <div className="issue-container">
         <Nav tabs>
           <NavItem className="btn">

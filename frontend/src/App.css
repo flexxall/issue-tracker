@@ -7,6 +7,11 @@
   width: auto;
 }
 
+.logo-sm {
+  max-height: 115px;
+  width: auto;
+}
+
 body {
   background: #d6e9ff;
 }
@@ -28,6 +33,18 @@ h1 {
 .loginModal {
   width: 80%;
   margin: auto;
+}
+
+.welcome-container {
+  max-width: 850px;
+  min-width: 300px;
+  margin: auto;
+  background: #f6f6f6;
+  -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
+  padding-bottom: 30px;
 }
 
 .issue-container {
