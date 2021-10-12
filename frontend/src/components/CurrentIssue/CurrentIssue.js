@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Card, CardText, CardSubtitle } from 'reactstrap';
+import { Row, Col, Card, CardText, CardSubtitle } from "reactstrap";
 
-import './CurrentIssue.css';
+import "./CurrentIssue.css";
 
 function CurrentIssue() {
-
-  const [issues, setIssue] = useState([])
+  const [issues, setIssue] = useState([]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/api/issues')
+    fetch("http://127.0.0.1:5000/api/issues")
       .then((res) => res.json())
-      .then((issue) => setIssue([...issue]))
-  }, [])
+      .then((issue) => setIssue([...issue]));
+  }, []);
 
   return (
     <div className="current-issues">
-      {issues.map((issue) =>
+      {issues.map((issue) => (
         <Card className="col-12" key={issue._id}>
           <Row className="pt-2">
             <Col className="col-sm-10">
-              <CardText>Assigned to: <span>{issue.forDev}</span></CardText>
+              <CardText>
+                Assigned to: <span>{issue.forDev}</span>
+              </CardText>
             </Col>
             <Col className="col-sm-2">Close Issue</Col>
           </Row>
           <Row className="pt-2">
-            <CardText>Priority: <span>{issue.priority}</span></CardText>
+            <CardText>
+              Priority: <span>{issue.priority}</span>
+            </CardText>
           </Row>
           <Row className="pt-2">
             <CardSubtitle className="text-left">Description</CardSubtitle>
@@ -35,9 +38,9 @@ function CurrentIssue() {
             </CardText>
           </Row>
         </Card>
-      )}
+      ))}
     </div>
-  )
+  );
 }
 
 export default CurrentIssue;

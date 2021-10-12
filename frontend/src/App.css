@@ -2,8 +2,13 @@
   text-align: center;
 }
 
+.logo {
+  max-height: 500px;
+  width: auto;
+}
+
 body {
-  background: #D6E9FF;  
+  background: #d6e9ff;
 }
 
 * {
@@ -13,7 +18,7 @@ body {
 h1 {
   padding-top: 10px;
   font-size: 65px;
-  color: #007AE6;
+  color: #007ae6;
 }
 
 .modalCard {
@@ -29,7 +34,7 @@ h1 {
   max-width: 850px;
   min-width: 300px;
   margin: auto;
-  background: #F6F6F6;
+  background: #f6f6f6;
   -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
@@ -38,9 +43,9 @@ h1 {
 }
 
 .nav {
-  float:none;
-  display:inline-block;
-  zoom:1;  
+  float: none;
+  display: inline-block;
+  zoom: 1;
 }
 
 .btn {
