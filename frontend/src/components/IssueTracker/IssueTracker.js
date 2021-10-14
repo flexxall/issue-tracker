@@ -10,12 +10,13 @@ import {
   TabPane,
   Button,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 import AddIssue from "../AddIssue/AddIssue";
 import CurrentIssue from "../CurrentIssue/CurrentIssue";
 import DevIssue from "../DevIssue/DevIssue";
 import Logo from "./logo.png";
 
-import "../../App.css";
+import "./IssueTracker.css";
 
 function IssueTracker() {
   const [activeTab, setActiveTab] = useState("1");
@@ -26,9 +27,21 @@ function IssueTracker() {
   };
 
   return (
-    <div className="App">
-      <div className="issue-container">
-        <Row className="">
+    //<div className="App">
+    <div className="issue-container">
+      <Row className="logo-button">
+        <Col>
+          <img src={Logo} className="logo-sm float-start" alt="logo" />
+        </Col>
+        <Col>
+          <Link to="/">
+            <Button className="float-end" color="info" size="lg">
+              Logout
+            </Button>
+          </Link>
+        </Col>
+      </Row>
+      {/* <Row className="logo-button pb-3">
           <Col className="clearfix col-xs-12">
             <img src={Logo} className="logo-sm float-start mx-5" alt="logo" />
           </Col>
@@ -42,70 +55,70 @@ function IssueTracker() {
               Logout
             </Button>
           </Col>
-        </Row>
-        <Nav tabs>
-          <NavItem className="btn">
-            <NavLink
-              className={activeTab === "1" ? "active" : ""}
-              onClick={() => {
-                toggleTab("1");
-              }}
-            >
-              Current Issues
-            </NavLink>
-          </NavItem>
-          <NavItem className="btn">
-            <NavLink
-              className={activeTab === "2" ? "active" : ""}
-              onClick={() => {
-                toggleTab("2");
-              }}
-            >
-              Add Issue
-            </NavLink>
-          </NavItem>
-          <NavItem className="btn">
-            <NavLink
-              className={activeTab === "3" ? "active" : ""}
-              onClick={() => {
-                toggleTab("3");
-              }}
-            >
-              My Issues
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={activeTab}>
-          <TabPane tabId="1">
-            <Row>
-              <Col sm="12">
-                <Card body>
-                  <CurrentIssue />
-                </Card>
-              </Col>
-            </Row>
-          </TabPane>
-          <TabPane tabId="2">
-            <Row>
-              <Col sm="12">
-                <Card body>
-                  <AddIssue />
-                </Card>
-              </Col>
-            </Row>
-          </TabPane>
-          <TabPane tabId="3">
-            <Row>
-              <Col sm="12">
-                <Card body>
-                  <DevIssue />
-                </Card>
-              </Col>
-            </Row>
-          </TabPane>
-        </TabContent>
-      </div>
+        </Row> */}
+      <Nav tabs>
+        <NavItem className="btn">
+          <NavLink
+            className={activeTab === "1" ? "active" : ""}
+            onClick={() => {
+              toggleTab("1");
+            }}
+          >
+            Current Issues
+          </NavLink>
+        </NavItem>
+        <NavItem className="btn">
+          <NavLink
+            className={activeTab === "2" ? "active" : ""}
+            onClick={() => {
+              toggleTab("2");
+            }}
+          >
+            Add Issue
+          </NavLink>
+        </NavItem>
+        <NavItem className="btn">
+          <NavLink
+            className={activeTab === "3" ? "active" : ""}
+            onClick={() => {
+              toggleTab("3");
+            }}
+          >
+            My Issues
+          </NavLink>
+        </NavItem>
+      </Nav>
+      <TabContent activeTab={activeTab}>
+        <TabPane tabId="1">
+          <Row>
+            <Col sm="12">
+              <Card body>
+                <CurrentIssue />
+              </Card>
+            </Col>
+          </Row>
+        </TabPane>
+        <TabPane tabId="2">
+          <Row>
+            <Col sm="12">
+              <Card body>
+                <AddIssue />
+              </Card>
+            </Col>
+          </Row>
+        </TabPane>
+        <TabPane tabId="3">
+          <Row>
+            <Col sm="12">
+              <Card body>
+                <DevIssue />
+              </Card>
+            </Col>
+          </Row>
+        </TabPane>
+      </TabContent>
     </div>
+    //</div>
   );
 }
 

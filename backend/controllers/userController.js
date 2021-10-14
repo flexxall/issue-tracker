@@ -1,15 +1,16 @@
-import asyncHandler from 'express-async-handler'
-import User from '../models/userModel.js'
-import generateToken from '../utils/generateToken.js'
+import asyncHandler from "express-async-handler";
+import User from "../models/userModel.js";
+import generateToken from "../utils/generateToken.js";
 
-export const registerUser = asyncHandler (async (req, res) => {
-  const { firstName, lastName, userName, email, password, isAdmin } = req.body
+export const registerUser = asyncHandler(async (req, res) => {
+  const { firstName, lastName, userName, email, password, isDev, isAdmin } =
+    req.body;
 
-  const userExists = await User.findOne({ email })
+  const userExists = await User.findOne({ email });
 
   if (userExists) {
-    res.status(400)
-    throw new Error("User Already Exists")
+    res.status(400);
+    throw new Error("User Already Exists");
   }
 
   const user = await User.create({
@@ -18,41 +19,43 @@ export const registerUser = asyncHandler (async (req, res) => {
     userName,
     email,
     password,
-    isAdmin
-  })
+    isDev,
+    isAdmin,
+  });
 
   if (user) {
     res.status(201).json({
       _id: user._id,
-      name: (user.firstName + ' ' + user.lastName ),
+      name: user.firstName + " " + user.lastName,
       userName: user.userName,
       email: user.email,
+      isDev: user.isDev,
       isAdmin: user.isAdmin,
-      token: generateToken(user._id)
-    })
+      token: generateToken(user._id),
+    });
   } else {
-    res.status(400)
-      throw new Error('Error creating user occured')
-  }  
-})
+    res.status(400);
+    throw new Error("Error creating user occured");
+  }
+});
 
-export const authUser = asyncHandler (async (req, res) => {
-  const { email, password } = req.body
+export const authUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
 
-  const user = await User.findOne({ email })
+  const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
-      name: (user.firstName + ' ' + user.lastName ),
+      name: user.firstName + " " + user.lastName,
       userName: user.userName,
       email: user.email,
+      isDev: user.isDev,
       isAdmin: user.isAdmin,
-      token: generateToken(user._id)
-    })
+      token: generateToken(user._id),
+    });
   } else {
-    res.status(400)
-      throw new Error('Invalid Email or Password')
+    res.status(400);
+    throw new Error("Invalid Email or Password");
   }
-  
-})
+});

@@ -12,21 +12,17 @@ app.use(cors());
 app.use(express.json());
 
 dotenv.config();
-//connect database
 connectDB();
 
-//require route
-//app.use("/");
-app.use("/issues", issueRouter);
-//app.use("/api/issues", issueRouter);
+app.get("/", (req, res) => {
+  res.send("API is running..");
+});
 
-//Creating API for user
-app.use("/api/users", userRouter);
+app.use("/issues", issueRouter);
+app.use("/users", userRouter);
 
 app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-
-//Express js listen method to run project on http://localhost:5000
 app.listen(PORT, console.log(`App is running on port ${PORT}`));

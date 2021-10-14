@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
-//import { Link } from "react-router-dom";
-import "./Login.css";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Logo from "./logo.png";
-import { Link } from "react-router-dom";
+import "./Register.css";
 
-function Login() {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -16,12 +15,12 @@ function Login() {
     event.preventDefault();
     try {
       const config = {
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
       };
       setLoading(true);
 
       const { data } = await axios.post(
-        "/users/login",
+        "/api/users/login",
         {
           email,
           password,
@@ -51,7 +50,7 @@ function Login() {
             className="input"
             name="email"
             type="email"
-            placeholder="Enter email"
+            placeholder="Email address"
             id="email"
             value={email}
             autoComplete="off"
@@ -64,7 +63,7 @@ function Login() {
             className="input"
             name="password"
             type="password"
-            placeholder="Enter password"
+            placeholder="Password"
             id="password"
             value={password}
             autoComplete="off"
@@ -73,16 +72,16 @@ function Login() {
         </FormGroup>
 
         <Button type="submit" color="info" className="mt-4">
-          Login
+          Register
         </Button>
-        <Link to="/register">
+        <Link to="/">
           <Button type="submit" color="info" className="mt-4 float-end">
-            Register
+            Home
           </Button>
         </Link>
       </Form>
     </div>
   );
-}
+};
 
-export default Login;
+export default Register;

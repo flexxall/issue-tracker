@@ -6,10 +6,12 @@ import WelcomePage from "./components/WelcomePage/WelcomePage.js";
 import IssueTracker from "./components/IssueTracker/IssueTracker.js";
 //import AddIssue from "./components/AddIssue/AddIssue";
 //import CurrentIssue from "./components/CurrentIssue/CurrentIssue";
-//import Login from "./components/Login/Login";
+import Login from "./components/Login/Login.js";
 //import DevIssue from "./components/DevIssue/DevIssue";
 
 import "./App.css";
+
+import Register from "./components/Register/Register.js";
 
 //function App() {
 const App = () => (
@@ -17,6 +19,8 @@ const App = () => (
     <Header />
     <div className="App">
       <Route path="/" component={WelcomePage} exact />
+      <Route path="/login" component={() => <Login />} />
+      <Route path="/register" component={() => <Register />} />
       <Route path="/issues" component={() => <IssueTracker />} />
     </div>
   </BrowserRouter>

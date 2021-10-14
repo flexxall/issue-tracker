@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "server.js",
   "type": "module",
-  "proxy": "http://127.0.0.1:5000",
   "scripts": {
     "start": "nodemon backend/server",
     "client": "npm start --prefix frontend",
@@ -18,7 +17,7 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.8",
+    "mongoose": "^6.0.10",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.1.0"
