@@ -1,13 +1,15 @@
 import React from "react";
-import { Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
-import "./header.css";
+import "./Header.css";
 
 const header = () => {
   return (
-    <Col className="header">
-      <h1>Issue Tracker</h1>
-    </Col>
+    <Row className="header">
+      <Col className="col-6 offset-3 header">
+        <h1>Issue Tracker</h1>
+      </Col>
+    </Row>
   );
 };
 

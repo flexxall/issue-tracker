@@ -3,17 +3,19 @@ import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 //import { Link } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
-import Logo from "./logo.png";
+import Logo from "../../media/images/logo.png";
 import { Link } from "react-router-dom";
+import Loading from "../Header/Loading";
+import ErrorMessage from "../Header/ErrorMessage";
 
-function Login() {
+function Login(history) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const submitHandler = async (event) => {
-    event.preventDefault();
+  const submitHandler = async (e) => {
+    e.preventDefault();
     try {
       const config = {
         headers: { "Content-type": "application/json" },
@@ -33,6 +35,7 @@ function Login() {
       setLoading(false);
     } catch (error) {
       setError(error.response.data.message);
+      setLoading(false);
     }
   };
 
@@ -40,10 +43,13 @@ function Login() {
     <div className="login-container">
       <Row className="logo-button">
         <Col>
-          <img src={Logo} className="logo-sm" alt="logo" />
+          <Link to="/">
+            <img src={Logo} className="logo-sm" alt="logo" />
+          </Link>
         </Col>
       </Row>
-
+      {error && <ErrorMessage color="danger">{error}</ErrorMessage>}
+      {loading && <Loading />}
       <Form className="login" onSubmit={submitHandler}>
         <FormGroup>
           <Label className="label">Email</Label>

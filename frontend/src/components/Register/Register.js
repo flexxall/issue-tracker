@@ -2,12 +2,21 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Logo from "./logo.png";
+import Loading from "../Header/Loading";
+import ErrorMessage from "../Header/ErrorMessage";
+
+import Logo from "../../media/images/logo.png";
 import "./Register.css";
 
 const Register = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -36,41 +45,91 @@ const Register = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="register-container">
       <Row className="logo-button">
         <Col>
-          <img src={Logo} className="logo-sm" alt="logo" />
+          <Link to="/">
+            <img src={Logo} className="logo-sm" alt="logo" />
+          </Link>
         </Col>
       </Row>
 
-      <Form className="login" onSubmit={submitHandler}>
-        <FormGroup>
+      <Form className="Register" onSubmit={submitHandler}>
+        <FormGroup className="col-6 float-start pe-2">
+          <Label className="label">First name</Label>
+          <Input
+            className="input"
+            name="firstName"
+            type="name"
+            placeholder="Enter First name"
+            value={firstName}
+            autoComplete="n"
+            onChange={(event) => setFirstName(event.target.value)}
+          />
+        </FormGroup>
+        <FormGroup className="col-6 float-end ps-2">
+          <Label className="label">Last name</Label>
+          <Input
+            className="input"
+            name="lastName"
+            type="name"
+            placeholder="Enter Last name"
+            value={lastName}
+            autoComplete="n"
+            onChange={(event) => setLastName(event.target.value)}
+          />
+        </FormGroup>
+
+        <FormGroup className="col-6 float-start pe-2">
+          <Label className="label">User name</Label>
+          <Input
+            className="input"
+            name="userName"
+            type="name"
+            placeholder="Enter a username"
+            value={userName}
+            autoComplete="off"
+            onChange={(event) => setUserName(event.target.value)}
+          />
+        </FormGroup>
+        <FormGroup className="col-6 float-end ps-2">
           <Label className="label">Email</Label>
           <Input
             className="input"
             name="email"
             type="email"
-            placeholder="Email address"
+            placeholder="Enter email"
             id="email"
             value={email}
             autoComplete="off"
             onChange={(event) => setEmail(event.target.value)}
           />
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="col-6 float-start pe-2">
           <Label className="label">Password</Label>
           <Input
             className="input"
             name="password"
             type="password"
-            placeholder="Password"
+            placeholder="Enter password"
             id="password"
             value={password}
             autoComplete="off"
             onChange={(event) => setPassword(event.target.value)}
           />
         </FormGroup>
-
+        <FormGroup className="col-6 float-end ps-2">
+          <Label className="label">Confirm Password</Label>
+          <Input
+            className="input"
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirm password"
+            value={confirmPassword}
+            autoComplete="off"
+            onChange={(event) => setConfirmPassword(event.target.value)}
+          />
+        </FormGroup>
         <Button type="submit" color="info" className="mt-4">
           Register
         </Button>

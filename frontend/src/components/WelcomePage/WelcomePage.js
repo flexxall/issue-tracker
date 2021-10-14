@@ -1,13 +1,18 @@
-import React from "react";
-import Logo from "./logo.png";
+import React, { useEffect } from "react";
+import Logo from "../../media/images/logo.png";
 import { Col, Button } from "reactstrap";
-
-import "./WelcomePage.css";
 import { Link } from "react-router-dom";
 
+import "./WelcomePage.css";
+
 function WelcomePage() {
-  //const [modal, setModal] = useState(false);
-  //const toggleModal = () => setModal(!modal);
+  // useEffect(() => {
+  //   const userInfo = localStorage.getItem("userInfo");
+
+  //   if (userInfo) {
+  //     history.push("/issues");
+  //   }
+  // }, [history]);
   return (
     <div className="welcome-container">
       <img src={Logo} className="logo" alt="logo" />
@@ -17,7 +22,7 @@ function WelcomePage() {
             Login
           </Button>
         </Link>
-        <Link to="/">
+        <Link to="/register">
           <Button color="info" size="lg">
             Register
           </Button>
