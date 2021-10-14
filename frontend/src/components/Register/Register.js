@@ -22,25 +22,29 @@ const Register = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    try {
-      const config = {
-        headers: { "Content-Type": "application/json" },
-      };
-      setLoading(true);
+    if (password !== confirmPassword) {
+      setMessage("Passowrds Do Not Match");
+    } else {
+      setMessage(null);
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        setLoading(true);
 
-      const { data } = await axios.post(
-        "/api/users/login",
-        {
-          email,
-          password,
-        },
-        config
-      );
-      console.log(data);
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      setLoading(false);
-    } catch (error) {
-      setError(error.response.data.message);
+        const { data } = await axios.post(
+          "/users",
+          { firstName, lastName, userName, email, password },
+          config
+        );
+        setLoading(false);
+        localStorage.setItem("userInfo", JSON.stringify(data));
+      } catch (error) {
+        setError(error.response.data.message);
+        setLoading(false);
+      }
     }
   };
 
@@ -53,7 +57,9 @@ const Register = () => {
           </Link>
         </Col>
       </Row>
-
+      {message && <ErrorMessage color="danger">{message}</ErrorMessage>}
+      {error && <ErrorMessage color="danger">{error}</ErrorMessage>}
+      {loading && <Loading />}
       <Form className="Register" onSubmit={submitHandler}>
         <FormGroup className="col-6 float-start pe-2">
           <Label className="label">First name</Label>
