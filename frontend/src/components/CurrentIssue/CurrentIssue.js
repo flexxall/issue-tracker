@@ -21,15 +21,15 @@ function CurrentIssue() {
       {issues.map((issue) => (
         <Card key={issue._id}>
           <Row className="pt-1 px-2">
-            <Col className="">
+            <Col>
               <CardText>
                 Assigned to: <span>{issue.forDev}</span>
               </CardText>
             </Col>
-            <Col className="">
+            <Col>
               <Button
                 href={`/issues/${issue._id}`}
-                className="float-end"
+                className="edit-button float-end"
                 color="warning"
                 size="sm"
               >

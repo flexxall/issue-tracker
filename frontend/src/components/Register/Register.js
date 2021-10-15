@@ -94,7 +94,7 @@ const Register = () => {
             type="name"
             placeholder="Enter a username"
             value={userName}
-            autoComplete="off"
+            autoComplete="n"
             onChange={(event) => setUserName(event.target.value)}
           />
         </FormGroup>
@@ -107,7 +107,7 @@ const Register = () => {
             placeholder="Enter email"
             id="email"
             value={email}
-            autoComplete="off"
+            autoComplete="n"
             onChange={(event) => setEmail(event.target.value)}
           />
         </FormGroup>
@@ -120,7 +120,7 @@ const Register = () => {
             placeholder="Enter password"
             id="password"
             value={password}
-            autoComplete="off"
+            autoComplete="n"
             onChange={(event) => setPassword(event.target.value)}
           />
         </FormGroup>
@@ -132,7 +132,7 @@ const Register = () => {
             type="password"
             placeholder="Confirm password"
             value={confirmPassword}
-            autoComplete="off"
+            autoComplete="n"
             onChange={(event) => setConfirmPassword(event.target.value)}
           />
         </FormGroup>

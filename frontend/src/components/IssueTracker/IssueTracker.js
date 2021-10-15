@@ -29,13 +29,13 @@ function IssueTracker() {
   return (
     //<div className="App">
     <div className="issue-container">
-      <Row className="logo-button">
+      <Row className="issue-banner">
         <Col>
           <img src={Logo} className="logo-sm float-start" alt="logo" />
         </Col>
         <Col>
           <Link to="/">
-            <Button className="float-end" color="info" size="lg">
+            <Button className="logout float-end" color="info">
               Logout
             </Button>
           </Link>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Row, Col, Form, FormGroup, Label, Input } from "reactstrap";
 import axios from "axios";
 
 import "./AddIssue.css";
@@ -34,7 +34,7 @@ function AddIssue() {
   }
 
   return (
-    <Form className="add-issue">
+    <Form>
       <FormGroup>
         <Label for="description">Description</Label>
         <Input
@@ -83,14 +83,18 @@ function AddIssue() {
           <option>Emergency</option>
         </Input>
       </FormGroup>
-      <Button
-        type="submit"
-        color="primary"
-        className="mt-4"
-        onClick={handleClick}
-      >
-        Add
-      </Button>
+      <Row className="add-issue">
+        <Col className="text-center">
+          <Button
+            type="submit"
+            color="info"
+            className=" mt-3 mb-2"
+            onClick={handleClick}
+          >
+            Add
+          </Button>
+        </Col>
+      </Row>
     </Form>
   );
 }
