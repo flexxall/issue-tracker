@@ -5,6 +5,7 @@ import {
   USER_LOGOUT,
 } from "../constants/userConstants";
 import axios from "axios";
+import History from "../utils/history";
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -25,6 +26,11 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 
     localStorage.setItem("userInfo", JSON.stringify(data));
+
+    const userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      History.push("/issues");
+    }
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,

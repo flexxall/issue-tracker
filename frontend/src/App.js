@@ -1,6 +1,5 @@
 import React from "react";
-//import Logo from "./logo.png";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Header from "./components/Header/Header.js";
 import WelcomePage from "./components/WelcomePage/WelcomePage.js";
 import IssueTracker from "./components/IssueTracker/IssueTracker.js";
@@ -12,9 +11,8 @@ import Register from "./components/Register/Register.js";
 
 import "./App.css";
 
-//function App() {
 const App = () => (
-  <BrowserRouter>
+  <>
     <Header />
     <div className="App">
       <Route path="/" component={WelcomePage} exact />
@@ -22,7 +20,7 @@ const App = () => (
       <Route path="/register" component={() => <Register />} />
       <Route path="/issues" component={() => <IssueTracker />} />
     </div>
-  </BrowserRouter>
+  </>
 );
 //}
 

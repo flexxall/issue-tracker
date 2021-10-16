@@ -17,11 +17,11 @@ const Login = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
-  useEffect(() => {
-    if (userInfo) {
-      history.push("/issues");
-    }
-  }, [history, userInfo]);
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     history.push("/issues");
+  //   }
+  // }, [history, userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
