@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Loading from "../Header/Loading";
-import ErrorMessage from "../Header/ErrorMessage";
+import Loading from "../Loading";
+import ErrorMessage from "../ErrorMessage";
 
 import Logo from "../../media/images/logo.png";
 import "./Register.css";
@@ -12,7 +12,6 @@ const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -69,7 +68,7 @@ const Register = () => {
             type="name"
             placeholder="Enter First name"
             value={firstName}
-            autoComplete="n"
+            autoComplete="nope"
             onChange={(event) => setFirstName(event.target.value)}
           />
         </FormGroup>
@@ -81,11 +80,10 @@ const Register = () => {
             type="name"
             placeholder="Enter Last name"
             value={lastName}
-            autoComplete="n"
+            autoComplete="nope"
             onChange={(event) => setLastName(event.target.value)}
           />
         </FormGroup>
-
         <FormGroup className="col-6 float-start pe-2">
           <Label className="label">User name</Label>
           <Input
@@ -94,7 +92,7 @@ const Register = () => {
             type="name"
             placeholder="Enter a username"
             value={userName}
-            autoComplete="n"
+            autoComplete="nope"
             onChange={(event) => setUserName(event.target.value)}
           />
         </FormGroup>
@@ -107,7 +105,7 @@ const Register = () => {
             placeholder="Enter email"
             id="email"
             value={email}
-            autoComplete="n"
+            autoComplete="nope"
             onChange={(event) => setEmail(event.target.value)}
           />
         </FormGroup>
@@ -120,7 +118,7 @@ const Register = () => {
             placeholder="Enter password"
             id="password"
             value={password}
-            autoComplete="n"
+            autoComplete="nope"
             onChange={(event) => setPassword(event.target.value)}
           />
         </FormGroup>
@@ -132,7 +130,7 @@ const Register = () => {
             type="password"
             placeholder="Confirm password"
             value={confirmPassword}
-            autoComplete="n"
+            autoComplete="nope"
             onChange={(event) => setConfirmPassword(event.target.value)}
           />
         </FormGroup>

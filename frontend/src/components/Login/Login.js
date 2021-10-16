@@ -1,42 +1,31 @@
-import React, { useState } from "react";
-import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
-//import { Link } from "react-router-dom";
-import "./Login.css";
-import axios from "axios";
-import Logo from "../../media/images/logo.png";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Loading from "../Header/Loading";
-import ErrorMessage from "../Header/ErrorMessage";
+import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
+import Loading from "../Loading";
+import ErrorMessage from "../ErrorMessage";
+import { login } from "../../actions/userActions";
+import Logo from "../../media/images/logo.png";
+import "./Login.css";
 
-function Login(history) {
+const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  //export default connect((state: {user: User}) => ({ user: state.user }))(Nav);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+
+  useEffect(() => {
+    if (userInfo) {
+      history.push("/issues");
+    }
+  }, [history, userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    try {
-      const config = {
-        headers: { "Content-type": "application/json" },
-      };
-      setLoading(true);
-
-      const { data } = await axios.post(
-        "/users/login",
-        {
-          email,
-          password,
-        },
-        config
-      );
-      console.log(data);
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      setLoading(false);
-    } catch (error) {
-      setError(error.response.data.message);
-      setLoading(false);
-    }
+    dispatch(login(email, password));
   };
 
   return (
@@ -77,8 +66,7 @@ function Login(history) {
             onChange={(event) => setPassword(event.target.value)}
           />
         </FormGroup>
-
-        <Button type="submit" color="info" className="mt-4">
+        <Button type="submit" color="info" className="loginbutton mt-4">
           Login
         </Button>
         <Link to="/register">
@@ -89,6 +77,6 @@ function Login(history) {
       </Form>
     </div>
   );
-}
+};
 
 export default Login;

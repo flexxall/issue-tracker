@@ -10,52 +10,54 @@ import {
   TabPane,
   Button,
 } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AddIssue from "../AddIssue/AddIssue";
 import CurrentIssue from "../CurrentIssue/CurrentIssue";
 import DevIssue from "../DevIssue/DevIssue";
 import Logo from "./logo.png";
 
 import "./IssueTracker.css";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../actions/userActions";
 
 function IssueTracker() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    history.push("/");
+  };
+
   const [activeTab, setActiveTab] = useState("1");
-  //const [modal, setModal] = useState(false);
 
   const toggleTab = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
   return (
-    //<div className="App">
     <div className="issue-container">
       <Row className="issue-banner">
         <Col>
-          <img src={Logo} className="logo-sm float-start" alt="logo" />
+          <Link to="/">
+            <img src={Logo} className="logo-sm float-start" alt="logo" />
+          </Link>
         </Col>
         <Col>
           <Link to="/">
-            <Button className="logout float-end" color="info">
+            <Button
+              onClick={logoutHandler}
+              className="logout float-end"
+              color="info"
+            >
               Logout
             </Button>
           </Link>
         </Col>
       </Row>
-      {/* <Row className="logo-button pb-3">
-          <Col className="clearfix col-xs-12">
-            <img src={Logo} className="logo-sm float-start mx-5" alt="logo" />
-          </Col>
-          <Col className="clearfix col-xs-12">
-            <Button
-              className="mt-5 float-end mx-5"
-              href="/"
-              color="info"
-              size="lg"
-            >
-              Logout
-            </Button>
-          </Col>
-        </Row> */}
       <Nav tabs>
         <NavItem className="btn">
           <NavLink
@@ -118,7 +120,6 @@ function IssueTracker() {
         </TabPane>
       </TabContent>
     </div>
-    //</div>
   );
 }
 

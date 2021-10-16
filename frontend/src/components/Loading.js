@@ -1,7 +1,7 @@
 import React from "react";
 import { Spinner } from "reactstrap";
 
-const Loading = (props) => {
+const Loading = () => {
   return (
     <div>
       <Spinner children="" color="secondary"></Spinner>

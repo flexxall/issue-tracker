@@ -27,12 +27,12 @@ const userSchema = new Schema(
     },
     isDev: {
       type: Boolean,
-
+      required: true,
       defualt: false,
     },
     isAdmin: {
       type: Boolean,
-
+      required: true,
       defualt: false,
     },
   },
