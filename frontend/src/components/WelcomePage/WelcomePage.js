@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Logo from "../../media/images/logo.png";
 import { Col, Button } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -6,13 +6,6 @@ import { Link } from "react-router-dom";
 import "./WelcomePage.css";
 
 function WelcomePage() {
-  // useEffect(() => {
-  //   const userInfo = localStorage.getItem("userInfo");
-
-  //   if (userInfo) {
-  //     history.push("/issues");
-  //   }
-  // }, [history]);
   return (
     <div className="welcome-container">
       <img src={Logo} className="logo" alt="logo" />

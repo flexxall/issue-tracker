@@ -7,8 +7,9 @@ import Logo from "../../media/images/logo.png";
 import { Link } from "react-router-dom";
 import Loading from "../Header/Loading";
 import ErrorMessage from "../Header/ErrorMessage";
+import History from "../../utils/history";
 
-function Login(history) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -31,13 +32,25 @@ function Login(history) {
         config
       );
       console.log(data);
+
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
+      const userInfo = localStorage.getItem("userInfo");
+      if (userInfo) {
+        History.push("/issues");
+      }
     } catch (error) {
       setError(error.response.data.message);
       setLoading(false);
     }
   };
+  // const history = useHistory();
+  // useEffect(() => {
+  //   const userInfo = localStorage.getItem("userInfo");
+  //   if (userInfo) {
+  //     History.push("/issues");
+  //   }
+  // }, [history]);
 
   return (
     <div className="login-container">

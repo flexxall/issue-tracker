@@ -26,36 +26,30 @@ function IssueTracker() {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
+  function handleLogout() {
+    localStorage.removeItem("userInfo");
+  }
+
   return (
-    //<div className="App">
     <div className="issue-container">
       <Row className="issue-banner">
         <Col>
-          <img src={Logo} className="logo-sm float-start" alt="logo" />
+          <Link to="/">
+            <img src={Logo} className="logo-sm float-start" alt="logo" />
+          </Link>
         </Col>
         <Col>
           <Link to="/">
-            <Button className="logout float-end" color="info">
+            <Button
+              onClick={handleLogout}
+              className="logout float-end"
+              color="info"
+            >
               Logout
             </Button>
           </Link>
         </Col>
       </Row>
-      {/* <Row className="logo-button pb-3">
-          <Col className="clearfix col-xs-12">
-            <img src={Logo} className="logo-sm float-start mx-5" alt="logo" />
-          </Col>
-          <Col className="clearfix col-xs-12">
-            <Button
-              className="mt-5 float-end mx-5"
-              href="/"
-              color="info"
-              size="lg"
-            >
-              Logout
-            </Button>
-          </Col>
-        </Row> */}
       <Nav tabs>
         <NavItem className="btn">
           <NavLink
@@ -118,7 +112,6 @@ function IssueTracker() {
         </TabPane>
       </TabContent>
     </div>
-    //</div>
   );
 }
 
