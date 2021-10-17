@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
@@ -13,15 +13,9 @@ const Login = ({ history }) => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  //export default connect((state: {user: User}) => ({ user: state.user }))(Nav);
+
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
-
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     history.push("/issues");
-  //   }
-  // }, [history, userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();

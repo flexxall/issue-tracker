@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Loading from "../Loading";
 import ErrorMessage from "../ErrorMessage";
-
+import { useDispatch, useSelector } from "react-redux";
 import Logo from "../../media/images/logo.png";
 import "./Register.css";
+import { register } from "../../actions/userActions";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -16,34 +16,18 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
 
   const submitHandler = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       setMessage("Passowrds Do Not Match");
     } else {
-      setMessage(null);
-      try {
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-        setLoading(true);
-
-        const { data } = await axios.post(
-          "/users",
-          { firstName, lastName, userName, email, password },
-          config
-        );
-        setLoading(false);
-        localStorage.setItem("userInfo", JSON.stringify(data));
-      } catch (error) {
-        setError(error.response.data.message);
-        setLoading(false);
-      }
+      dispatch(register(firstName, lastName, userName, email, password));
     }
   };
 
