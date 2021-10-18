@@ -14,11 +14,11 @@ import { Link, useHistory } from "react-router-dom";
 import AddIssue from "../AddIssue/AddIssue";
 import CurrentIssue from "../CurrentIssue/CurrentIssue";
 import DevIssue from "../DevIssue/DevIssue";
-import Logo from "./logo.png";
+import Logo from "../../media/images/logo.png";
+import { useDispatch } from "react-redux";
+import { logout } from "../../actions/userActions";
 
 import "./IssueTracker.css";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../actions/userActions";
 
 function IssueTracker() {
   const history = useHistory();

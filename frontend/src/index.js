@@ -12,9 +12,8 @@ import "./index.css";
 ReactDOM.render(
   <Router history={history}>
     <Provider store={store}>
-      <App />,
+      <App />
     </Provider>
-    ,
   </Router>,
   document.getElementById("root")
 );
