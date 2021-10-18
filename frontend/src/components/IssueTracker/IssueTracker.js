@@ -24,8 +24,8 @@ function IssueTracker() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  //const userLogin = useSelector((state) => state.userLogin);
+  //const { userInfo } = userLogin;
 
   const logoutHandler = () => {
     dispatch(logout());

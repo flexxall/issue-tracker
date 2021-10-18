@@ -1,15 +1,32 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-const issueSchema = new Schema({	
-	description: String,
-	forDev: String,
-	priority: String
-},{
-	timestamps: true
-});
+const issueSchema = new Schema(
+  {
+    description: {
+      type: String,
+      required: true,
+    },
+    forDev: {
+      type: String,
+      required: true,
+    },
+    priority: {
+      type: String,
+      required: true,
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: "User",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Issue = mongoose.model('Issue', issueSchema)
+const Issue = mongoose.model("Issue", issueSchema);
 
-export default Issue
+export default Issue;

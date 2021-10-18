@@ -2,8 +2,9 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/connectDB.js";
-import issueRouter from "./routes/issueRouter.js";
 import userRouter from "./routes/userRouter.js";
+import issueRouter from "./routes/issueRouter.js";
+import myIssuesRouter from "./routes/myIssuesRouter.js";
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 
 const app = express();
@@ -17,9 +18,9 @@ connectDB();
 app.get("/", (req, res) => {
   res.send("API is running..");
 });
-
-app.use("/issues", issueRouter);
 app.use("/users", userRouter);
+app.use("/issues", issueRouter);
+//app.use("/myIssues", myIssuesRouter);
 
 app.use(notFound);
 app.use(errorHandler);

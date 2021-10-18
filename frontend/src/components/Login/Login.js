@@ -15,7 +15,7 @@ const Login = ({ history }) => {
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const { loading, error } = userLogin;
 
   const submitHandler = async (e) => {
     e.preventDefault();
