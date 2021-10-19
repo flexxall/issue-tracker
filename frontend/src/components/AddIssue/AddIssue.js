@@ -39,7 +39,7 @@ function AddIssue() {
 
   return (
     <Form onSubmit={submitHandler}>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {error && <ErrorMessage color="danger">{error}</ErrorMessage>}
       <FormGroup>
         <Label for="description">Description</Label>
         <Input

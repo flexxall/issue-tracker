@@ -31,7 +31,7 @@ function CurrentIssue() {
 
   return (
     <div className="current-issues">
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {error && <ErrorMessage color="danger">{error}</ErrorMessage>}
       {loading && <Loading />}
       {issues?.reverse().map((issue) => (
         <Card key={issue._id}>

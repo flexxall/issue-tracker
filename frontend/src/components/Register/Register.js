@@ -41,7 +41,7 @@ const Register = () => {
           </Link>
         </Col>
       </Row>
-      {message && <ErrorMessage color="danger">{message}</ErrorMessage>}
+      {message && <ErrorMessage>{message}</ErrorMessage>}
       {error && <ErrorMessage color="danger">{error}</ErrorMessage>}
       {loading && <Loading />}
       <Form className="Register" onSubmit={submitHandler}>
