@@ -8,7 +8,8 @@ import {
   USER_REGISTER_SUCCESS,
 } from "../constants/userConstants";
 import axios from "axios";
-import History from "../utils/history";
+//import { useHistory } from "react-router-dom";
+//import History from "../utils/history";
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -30,10 +31,11 @@ export const login = (email, password) => async (dispatch) => {
 
     localStorage.setItem("userInfo", JSON.stringify(data));
 
-    const userInfo = localStorage.getItem("userInfo");
-    if (userInfo) {
-      History.push("/issues");
-    }
+    // const userInfo = localStorage.getItem("userInfo");
+    // const history = useHistory();
+    // if (userInfo) {
+    //   history.push("/issues");
+    // }
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -73,10 +75,11 @@ export const register =
 
       localStorage.setItem("userInfo", JSON.stringify(data));
 
-      const userInfo = localStorage.getItem("userInfo");
-      if (userInfo) {
-        History.push("/issues");
-      }
+      // const userInfo = localStorage.getItem("userInfo");
+      // const history = useHistory();
+      // if (userInfo) {
+      //   history.push("/issues");
+      // }
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,

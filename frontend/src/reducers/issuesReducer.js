@@ -1,0 +1,36 @@
+import {
+  CURRENT_ISSUES_FAIL,
+  CURRENT_ISSUES_REQUEST,
+  CURRENT_ISSUES_SUCCESS,
+  ISSUE_CREATE_FAIL,
+  ISSUE_CREATE_REQUEST,
+  ISSUE_CREATE_SUCCESS,
+} from "../constants/issuesConstants";
+
+export const currentIssuesReducer = (state = { issues: [] }, action) => {
+  switch (action.type) {
+    case CURRENT_ISSUES_REQUEST:
+      return { loading: true };
+    case CURRENT_ISSUES_SUCCESS:
+      return { loading: false, issues: action.payload };
+    case CURRENT_ISSUES_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const issueCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ISSUE_CREATE_REQUEST:
+      return { loading: true };
+    case ISSUE_CREATE_SUCCESS:
+      return { loading: false, success: true };
+    case ISSUE_CREATE_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};

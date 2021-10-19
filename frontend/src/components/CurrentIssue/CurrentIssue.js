@@ -1,24 +1,39 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Row, Col, Card, CardText, CardSubtitle, Button } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { listIssues } from "../../actions/issuesActions";
+import Loading from "../Loading";
+import ErrorMessage from "../ErrorMessage";
 
 import "./CurrentIssue.css";
 
 function CurrentIssue() {
-  const [issues, setIssue] = useState([]);
+  const dispatch = useDispatch();
 
-  const fetchIssues = async () => {
-    const { data } = await axios.get("/issues");
-    setIssue(data);
-  };
+  const currentIssues = useSelector((state) => state.currentIssues);
+  const { loading, issues, error } = currentIssues;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const issueCreate = useSelector((state) => state.issueCreate);
+  const { success: successCreate } = issueCreate;
+
+  const history = useHistory();
 
   useEffect(() => {
-    fetchIssues();
-  }, []);
+    dispatch(listIssues());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [dispatch, successCreate, history, userInfo]);
 
   return (
     <div className="current-issues">
-      {issues.map((issue) => (
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {loading && <Loading />}
+      {issues?.reverse().map((issue) => (
         <Card key={issue._id}>
           <Row className="pt-1 px-2">
             <Col>
@@ -51,7 +66,9 @@ function CurrentIssue() {
             </CardText>
           </Row>
           <Row className="pt-2">
-            <footer className="footer">Created on {issue.createdAt}</footer>
+            <footer className="footer">
+              Created on {issue.createdAt.substring(0, 10)}
+            </footer>
           </Row>
         </Card>
       ))}

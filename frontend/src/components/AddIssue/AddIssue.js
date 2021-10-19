@@ -1,50 +1,55 @@
 import React, { useState } from "react";
 import { Button, Row, Col, Form, FormGroup, Label, Input } from "reactstrap";
-import axios from "axios";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createIssue } from "../../actions/issuesActions";
+import Loading from "../Loading";
+import ErrorMessage from "../ErrorMessage";
 
 import "./AddIssue.css";
 
 function AddIssue() {
-  const [input, setInput] = useState({
-    description: "",
-    forDev: "",
-    priority: "",
-  });
+  const [description, setDescription] = useState("");
+  const [forDev, setForDev] = useState("");
+  const [priority, setPriority] = useState("");
 
-  function handleChange(event) {
-    const { name, value } = event.target;
+  const dispatch = useDispatch();
 
-    setInput((prevInput) => {
-      return {
-        ...prevInput,
-        [name]: value,
-      };
-    });
-  }
+  const issueCreate = useSelector((state) => state.issueCreate);
+  const { loading, error, issue } = issueCreate;
 
-  function handleClick(event) {
-    //event.preventDefault();
-    const newIssue = {
-      description: input.description,
-      forDev: input.forDev,
-      priority: input.priority,
-    };
+  console.log(issue);
 
-    axios.post("http://127.0.0.1:5000/issues", newIssue);
-  }
+  const resetHandler = () => {
+    setDescription("");
+    setForDev("");
+    setPriority("");
+  };
+
+  const history = useHistory();
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    dispatch(createIssue(description, forDev, priority));
+    if (!description || !forDev || !priority) return;
+
+    resetHandler();
+    history.goBack("/issues");
+  };
 
   return (
-    <Form>
+    <Form onSubmit={submitHandler}>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       <FormGroup>
         <Label for="description">Description</Label>
         <Input
           className="input"
           name="description"
-          value={input.description}
+          value={description}
           id="description"
           autoComplete="off"
           placeholder="Description of Issue..."
-          onChange={handleChange}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </FormGroup>
       <FormGroup>
@@ -52,10 +57,10 @@ function AddIssue() {
         <Input
           className="input"
           name="forDev"
-          value={input.forDev}
+          value={forDev}
           type="select"
           id="forDev"
-          onChange={handleChange}
+          onChange={(e) => setForDev(e.target.value)}
         >
           <option disabled={true} value="">
             --Select a Developer--
@@ -70,9 +75,9 @@ function AddIssue() {
         <Input
           type="select"
           name="priority"
-          value={input.priority}
+          value={priority}
           id="priority"
-          onChange={handleChange}
+          onChange={(e) => setPriority(e.target.value)}
         >
           <option disabled={true} value="">
             --Select a Level--
@@ -85,12 +90,8 @@ function AddIssue() {
       </FormGroup>
       <Row className="add-issue">
         <Col className="text-center">
-          <Button
-            type="submit"
-            color="info"
-            className=" mt-3 mb-2"
-            onClick={handleClick}
-          >
+          {loading && <Loading />}
+          <Button type="submit" color="info" className=" mt-3 mb-2">
             Add
           </Button>
         </Col>

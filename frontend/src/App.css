@@ -25,13 +25,3 @@ h1 {
   width: 80%;
   margin: auto;
 }
-
-.nav {
-  float: none;
-  display: inline-block;
-  zoom: 1;
-}
-
-.btn {
-  margin: 0px 15px;
-}

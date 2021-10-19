@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Row,
   Col,
@@ -10,27 +10,27 @@ import {
   TabPane,
   Button,
 } from "reactstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AddIssue from "../AddIssue/AddIssue";
 import CurrentIssue from "../CurrentIssue/CurrentIssue";
 import DevIssue from "../DevIssue/DevIssue";
 import Logo from "../../media/images/logo.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 
 import "./IssueTracker.css";
 
-function IssueTracker() {
-  const history = useHistory();
+const IssueTracker = () => {
   const dispatch = useDispatch();
 
-  //const userLogin = useSelector((state) => state.userLogin);
-  //const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const logoutHandler = () => {
     dispatch(logout());
-    history.push("/");
   };
+
+  useEffect(() => {}, [userInfo]);
 
   const [activeTab, setActiveTab] = useState("1");
 
@@ -46,6 +46,9 @@ function IssueTracker() {
             <img src={Logo} className="logo-sm float-start" alt="logo" />
           </Link>
         </Col>
+        <Col className="welcome-message">{`Welcome Back ${
+          userInfo && userInfo.userName
+        }..`}</Col>
         <Col>
           <Link to="/">
             <Button
@@ -58,7 +61,8 @@ function IssueTracker() {
           </Link>
         </Col>
       </Row>
-      <Nav tabs>
+
+      <Nav tabs className="justify-content-center">
         <NavItem className="btn">
           <NavLink
             className={activeTab === "1" ? "active" : ""}
@@ -90,6 +94,7 @@ function IssueTracker() {
           </NavLink>
         </NavItem>
       </Nav>
+
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
           <Row>
@@ -121,6 +126,6 @@ function IssueTracker() {
       </TabContent>
     </div>
   );
-}
+};
 
 export default IssueTracker;

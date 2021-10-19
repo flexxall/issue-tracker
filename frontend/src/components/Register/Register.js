@@ -5,8 +5,9 @@ import Loading from "../Loading";
 import ErrorMessage from "../ErrorMessage";
 import { useDispatch, useSelector } from "react-redux";
 import Logo from "../../media/images/logo.png";
-import "./Register.css";
 import { register } from "../../actions/userActions";
+
+import "./Register.css";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
