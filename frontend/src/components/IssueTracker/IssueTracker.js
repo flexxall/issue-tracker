@@ -1,131 +1,22 @@
-import React, { useState, useEffect } from "react";
-import {
-  Row,
-  Col,
-  Card,
-  Nav,
-  NavItem,
-  NavLink,
-  TabContent,
-  TabPane,
-  Button,
-} from "reactstrap";
-import { Link } from "react-router-dom";
-import AddIssue from "../AddIssue/AddIssue";
-import CurrentIssue from "../CurrentIssue/CurrentIssue";
-import DevIssue from "../DevIssue/DevIssue";
-import Logo from "../../media/images/logo.png";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../actions/userActions";
+import React from "react";
+import { Row, Container } from "reactstrap";
 
 import "./IssueTracker.css";
 
-const IssueTracker = () => {
-  const dispatch = useDispatch();
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
-  const logoutHandler = () => {
-    dispatch(logout());
-  };
-
-  useEffect(() => {}, [userInfo]);
-
-  const [activeTab, setActiveTab] = useState("1");
-
-  const toggleTab = (tab) => {
-    if (activeTab !== tab) setActiveTab(tab);
-  };
-
+function IssueTracker({ children, title }) {
   return (
-    <div className="issue-container">
-      <Row className="issue-banner">
-        <Col>
-          <Link to="/">
-            <img src={Logo} className="logo-sm float-start" alt="logo" />
-          </Link>
-        </Col>
-        <Col className="welcome-message">{`Welcome Back ${
-          userInfo && userInfo.userName
-        }..`}</Col>
-        <Col>
-          <Link to="/">
-            <Button
-              onClick={logoutHandler}
-              className="logout float-end"
-              color="info"
-            >
-              Logout
-            </Button>
-          </Link>
-        </Col>
-      </Row>
-
-      <Nav tabs className="justify-content-center">
-        <NavItem className="btn">
-          <NavLink
-            className={activeTab === "1" ? "active" : ""}
-            onClick={() => {
-              toggleTab("1");
-            }}
-          >
-            Current Issues
-          </NavLink>
-        </NavItem>
-        <NavItem className="btn">
-          <NavLink
-            className={activeTab === "2" ? "active" : ""}
-            onClick={() => {
-              toggleTab("2");
-            }}
-          >
-            Add Issue
-          </NavLink>
-        </NavItem>
-        <NavItem className="btn">
-          <NavLink
-            className={activeTab === "3" ? "active" : ""}
-            onClick={() => {
-              toggleTab("3");
-            }}
-          >
-            My Issues
-          </NavLink>
-        </NavItem>
-      </Nav>
-
-      <TabContent activeTab={activeTab}>
-        <TabPane tabId="1">
-          <Row>
-            <Col sm="12">
-              <Card body>
-                <CurrentIssue />
-              </Card>
-            </Col>
-          </Row>
-        </TabPane>
-        <TabPane tabId="2">
-          <Row>
-            <Col sm="12">
-              <Card body>
-                <AddIssue />
-              </Card>
-            </Col>
-          </Row>
-        </TabPane>
-        <TabPane tabId="3">
-          <Row>
-            <Col sm="12">
-              <Card body>
-                <DevIssue />
-              </Card>
-            </Col>
-          </Row>
-        </TabPane>
-      </TabContent>
-    </div>
+    <Row>
+      <div className="page-title">
+        {title && (
+          <>
+            <h1 className="heading">{title}</h1>
+            <hr />
+          </>
+        )}
+        {children}
+      </div>
+    </Row>
   );
-};
+}
 
 export default IssueTracker;

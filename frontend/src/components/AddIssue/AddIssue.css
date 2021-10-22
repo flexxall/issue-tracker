@@ -1,7 +1,7 @@
 form {
   text-align: left;
-  width:100%;
-  padding-inline: 30px;
+  width: 100%;
+  padding-inline: 50px;
 }
 
 label input,
@@ -16,11 +16,6 @@ form label {
   margin-left: 5px;
 }
 
-.add-issue{
-  display:flex;
-  align: center;
-}
-
 .add-issue button {
   width: 150px;
   -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
@@ -28,8 +23,8 @@ form label {
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
 }
 
-.input:focus { 
+.input:focus {
   outline: none !important;
-  border-color: #719ECE;
-  box-shadow: 0 0 10px #719ECE;
+  border-color: #719ece;
+  box-shadow: 0 0 10px #719ece;
 }

@@ -1,22 +1,5 @@
-.logo-sm {
-  max-height: 115px;
-  width: auto;
-}
-
-.login-container {
-  max-width: 520px;
-  min-width: 369px;
-  margin: auto;
-  text-align: center;
-  background: #f6f6f6;
-  -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-  border-radius: 5px;
-  padding: 0px 50px 30px;
-}
-
-form {
+.login {
+  max-width: 400px;
   margin: auto;
 }
 
@@ -28,4 +11,12 @@ form label {
   outline: none !important;
   border-color: #719ece;
   box-shadow: 0 0 10px #719ece;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
 }

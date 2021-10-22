@@ -1,20 +1,20 @@
+.issue-container {
+  min-width: 369px;
+  min-height: 83vh;
+  margin-top: 15px;
+  border-radius: 3px;
+  padding: 30px 50px;
+  background: #f6f6f6;
+  -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+}
+
 .current-issues {
-  max-height: 360px;
+  max-height: 500px;
   padding-right: 10px;
   overflow: hidden;
   overflow-y: scroll;
-}
-
-.card {
-  padding: 10px;
-}
-
-.current-issues {
-  text-align: left;
-}
-
-.current-issues span {
-  margin-left: 10px;
 }
 
 .current-issues span,
@@ -47,10 +47,4 @@
   -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-}
-
-.footer {
-  font-family: NunitoRegular;
-  text-align: center;
-  color: #959595;
 }

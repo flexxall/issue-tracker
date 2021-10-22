@@ -1,21 +1,5 @@
-.logo-sm {
-  max-height: 115px;
-  width: auto;
-}
-
-.register-container {
-  max-width: 850px;
-  min-width: 400px;
-  margin: auto;
-  background: #f6f6f6;
-  -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-  border-radius: 5px;
-  padding: 0px 50px 30px;
-}
-
-form {
+.register {
+  max-width: 700px;
   margin: auto;
 }
 
@@ -27,15 +11,16 @@ form label {
   margin-top: 15px;
 }
 
-button {
-  margin-top: 10px;
-  -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-}
-
 .input:focus {
   outline: none !important;
   border-color: #719ece;
   box-shadow: 0 0 10px #719ece;
+}
+
+.register-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
 }
