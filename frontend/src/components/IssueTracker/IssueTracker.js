@@ -1,12 +1,10 @@
 import React from "react";
-import { Row, Container } from "reactstrap";
-
-import "./IssueTracker.css";
+import { Row } from "reactstrap";
 
 function IssueTracker({ children, title }) {
   return (
     <Row>
-      <div className="page-title">
+      <div>
         {title && (
           <>
             <h1 className="heading">{title}</h1>

@@ -17,9 +17,7 @@ function AddIssue() {
   const dispatch = useDispatch();
 
   const issueCreate = useSelector((state) => state.issueCreate);
-  const { loading, error, issue } = issueCreate;
-
-  console.log(issue);
+  const { loading, error } = issueCreate;
 
   const resetHandler = () => {
     setDescription("");

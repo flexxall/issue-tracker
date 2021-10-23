@@ -41,7 +41,7 @@ const getIssueById = asyncHandler(async (req, res) => {
 });
 
 const updateIssue = asyncHandler(async (req, res) => {
-  const { description, forDev, priority } = req.body;
+  const { description, forDev, priority, isComplete } = req.body;
   const issue = await Issue.findById(req.params.id);
 
   if (issue.user.toString() !== req.user._id.toString()) {
@@ -53,12 +53,12 @@ const updateIssue = asyncHandler(async (req, res) => {
     issue.description = description;
     issue.forDev = forDev;
     issue.priority = priority;
-    c;
+    issue.isComplete = isComplete;
 
     const updatedIssue = await issue.save();
     res.json(updatedIssue);
   } else {
-    res.status(401);
+    res.status(404);
     throw new Error("Issue not found");
   }
 });

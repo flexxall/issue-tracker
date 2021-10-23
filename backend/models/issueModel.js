@@ -21,6 +21,10 @@ const issueSchema = new Schema(
       require: true,
       ref: "User",
     },
+    isCompleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

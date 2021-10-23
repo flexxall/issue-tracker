@@ -1,14 +1,20 @@
 import axios from "axios";
 import {
-  CURRENT_ISSUES_FAIL,
   CURRENT_ISSUES_REQUEST,
   CURRENT_ISSUES_SUCCESS,
-  ISSUE_CREATE_FAIL,
+  CURRENT_ISSUES_FAIL,
+  MY_ISSUES_REQUEST,
+  MY_ISSUES_SUCCESS,
+  MY_ISSUES_FAIL,
   ISSUE_CREATE_REQUEST,
   ISSUE_CREATE_SUCCESS,
-  ISSUE_UPDATE_FAIL,
+  ISSUE_CREATE_FAIL,
   ISSUE_UPDATE_REQUEST,
   ISSUE_UPDATE_SUCCESS,
+  ISSUE_UPDATE_FAIL,
+  ISSUE_DELETE_REQUEST,
+  ISSUE_DELETE_SUCCESS,
+  ISSUE_DELETE_FAIL,
 } from "../constants/issuesConstants";
 
 export const listIssues = () => async (dispatch, getState) => {
@@ -21,36 +27,6 @@ export const listIssues = () => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-
-    const { data } = await axios.get(`/issues`, config);
-
-    dispatch({
-      type: CURRENT_ISSUES_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
-    dispatch({ type: CURRENT_ISSUES_FAIL, payload: message });
-  }
-};
-
-export const devIssues = () => async (dispatch, getState) => {
-  try {
-    dispatch({ type: CURRENT_ISSUES_REQUEST });
-
-    const {
-      userLogin: { userInfo },
-    } = getState();
-
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
@@ -106,7 +82,8 @@ export const createIssue =
   };
 
 export const updateIssue =
-  (id, description, forDev, priority) => async (dispatch, getState) => {
+  (id, description, forDev, priority, isCompleted) =>
+  async (dispatch, getState) => {
     try {
       dispatch({
         type: ISSUE_UPDATE_REQUEST,
@@ -125,7 +102,7 @@ export const updateIssue =
 
       const { data } = await axios.put(
         `/issues/${id}`,
-        { description, forDev, priority },
+        { description, forDev, priority, isCompleted },
         config
       );
 
@@ -141,3 +118,71 @@ export const updateIssue =
       dispatch({ type: ISSUE_UPDATE_FAIL, payload: message });
     }
   };
+
+export const getUserIssues = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: MY_ISSUES_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(
+      `/issues`,
+      // {
+      //   params: {
+      //     user: userInfo._id,
+      //   },
+      // },
+      config
+    );
+
+    dispatch({
+      type: MY_ISSUES_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: MY_ISSUES_FAIL, payload: message });
+  }
+};
+
+export const deleteIssue = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ISSUE_DELETE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.delete(`/issues/${id}`, config);
+
+    dispatch({
+      type: ISSUE_DELETE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: ISSUE_DELETE_FAIL, payload: message });
+  }
+};

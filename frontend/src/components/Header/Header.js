@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import {
   Navbar,
-  NavbarBrand,
   Nav,
-  NavLink,
   Button,
   ButtonGroup,
   UncontrolledDropdown,
@@ -13,6 +11,8 @@ import {
   Container,
   NavbarToggler,
   Collapse,
+  FormGroup,
+  Input,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +20,7 @@ import { logout } from "../../redux/actions/userActions";
 
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ setSearch }) => {
   const dispatch = useDispatch();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -58,37 +58,71 @@ const Header = () => {
     }
   };
 
+  const myProfile = () => {
+    if (!userInfo) {
+      return;
+    } else {
+      return (
+        <Nav>
+          <UncontrolledDropdown>
+            <DropdownToggle className="navlink" nav caret>
+              {userInfo?.userName}
+            </DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem>
+                <Link className="dropdown-item" to="/profile">
+                  My Profile
+                </Link>
+              </DropdownItem>
+              <DropdownItem>
+                <Link className="dropdown-item" to="/issues">
+                  Current Issues
+                </Link>
+              </DropdownItem>
+              <DropdownItem>
+                <Link className="dropdown-item" to="/addIssue">
+                  Add Issue
+                </Link>
+              </DropdownItem>
+              <DropdownItem>
+                <Link className="dropdown-item" to="/myIssues">
+                  My Issues
+                </Link>
+              </DropdownItem>
+              <DropdownItem>
+                <Link className="dropdown-item" to="/completedIssues">
+                  Completed Issues
+                </Link>
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem onClick={logoutHandler}>Logout</DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </Nav>
+      );
+    }
+  };
+
   return (
     <Navbar className="navbar mt-2" dark expand="lg">
       <Container>
-        <NavbarBrand href="/">
+        <Nav>
           <Link className="brand" to="/">
             Issue Tracker
           </Link>
-        </NavbarBrand>
+        </Nav>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar className="justify-content-end">
-          <NavLink>
-            <Link className="navlink" to="/issues">
-              Current Issues
-            </Link>
-          </NavLink>
-          <Nav className="user-dropdown ">
-            <UncontrolledDropdown>
-              <DropdownToggle nav caret>
-                {`${userInfo && userInfo.userName}`}
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem href="/profile">My Profile</DropdownItem>
-                <DropdownItem href="/issues">Current Issues</DropdownItem>
-                <DropdownItem href="/addIssue">Add Issue</DropdownItem>
-
-                <DropdownItem href="/devIssues">My Issues</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem onClick={logoutHandler}>Logout</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-
+          <FormGroup className="pt-3 pb-3 m-auto">
+            <Input
+              type="search"
+              placeholder="Search"
+              className="mr-sm-2"
+              onChange={(event) => setSearch(event.target.value)}
+            />
+          </FormGroup>
+          <Nav>
+            <Nav>{myProfile()}</Nav>
             <Nav>{authButton()}</Nav>
           </Nav>
         </Collapse>

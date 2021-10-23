@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateIssue } from "../../redux/actions/issuesActions";
+import { deleteIssue, updateIssue } from "../../redux/actions/issuesActions";
 import Loading from "../Loading";
 import ErrorMessage from "../ErrorMessage";
 
@@ -23,12 +23,23 @@ function UpdateIssue({ match }) {
   const [description, setDescription] = useState("");
   const [forDev, setForDev] = useState("");
   const [priority, setPriority] = useState("");
+  const [isComplete, setIsComplete] = useState("");
   const [date, setDate] = useState("");
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const issueUpdate = useSelector((state) => state.issueUpdate);
   const { loading, error } = issueUpdate;
+
+  const issueDelete = useSelector((state) => state.issueDelete);
+  const { loading: loadingDelete, error: errorDelete } = issueDelete;
+
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteIssue(id));
+    }
+  };
 
   useEffect(() => {
     const fetching = async () => {
@@ -37,26 +48,28 @@ function UpdateIssue({ match }) {
       setDescription(data.description);
       setForDev(data.forDev);
       setPriority(data.priority);
+      setIsComplete(data.isComplete);
       setDate(data.updatedAt);
     };
     fetching();
   }, [match.params.id, date]);
 
+  const updateHandler = (event) => {
+    event.preventDefault();
+    dispatch(
+      updateIssue(match.params.id, description, forDev, priority, isComplete)
+    );
+    if (!description || !forDev || !priority) return;
+
+    resetHandler();
+    history.push("/issues");
+  };
+
   const resetHandler = () => {
     setDescription("");
     setForDev("");
     setPriority("");
-  };
-
-  const history = useHistory();
-
-  const updateHandler = (event) => {
-    event.preventDefault();
-    dispatch(updateIssue(match.params.id, description, forDev, priority));
-    if (!description || !forDev || !priority) return;
-
-    resetHandler();
-    history.goBack("/issues");
+    setIsComplete("");
   };
 
   return (
@@ -66,10 +79,20 @@ function UpdateIssue({ match }) {
         <Row className="pt-1 px-2">
           <Col>
             <Form onSubmit={updateHandler}>
+              {errorDelete && (
+                <ErrorMessage color="danger">{errorDelete}</ErrorMessage>
+              )}
+              {loadingDelete && <Loading />}
               {error && <ErrorMessage color="danger">{error}</ErrorMessage>}
+              {loading && <Loading />}
               <FormGroup check className="checkbox">
                 <Label check>
-                  <Input type="checkbox" className="p-2" />{" "}
+                  <Input
+                    type="checkbox"
+                    className="p-2"
+                    value={isComplete}
+                    id="isComplete"
+                  />{" "}
                   <h2>Issue Complete</h2>
                 </Label>
               </FormGroup>
@@ -128,7 +151,6 @@ function UpdateIssue({ match }) {
               </Row>
               <Row className="complete-update">
                 <Col className="btn-row">
-                  {loading && <Loading />}
                   <Button
                     type="submit"
                     color="info"
@@ -140,6 +162,7 @@ function UpdateIssue({ match }) {
                     type="submit"
                     color="danger"
                     className="complete-btn mt-3 mb-3"
+                    onClick={() => deleteHandler(match.params.id)}
                   >
                     Delete Issue
                   </Button>

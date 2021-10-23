@@ -4,19 +4,23 @@ import {
   userLoginReducer,
   userRegisterReducer,
 } from "./redux/reducers/userReducers";
-import { composeWithDevTools } from "redux-devtools-extension";
 import {
   currentIssuesReducer,
   issueCreateReducer,
+  issueDeleteReducer,
   issueUpdateReducer,
+  myIssuesReducer,
 } from "./redux/reducers/issuesReducer";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   currentIssues: currentIssuesReducer,
+  myIssues: myIssuesReducer,
   issueCreate: issueCreateReducer,
   issueUpdate: issueUpdateReducer,
+  issueDelete: issueDeleteReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

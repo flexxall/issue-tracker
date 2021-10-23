@@ -20,27 +20,25 @@ h1 {
 
 .brand,
 .brand:hover {
+  font-size: 25px;
   text-decoration: none;
+  color: #007ae6;
 }
 
-.navlink {
+.navlink,
+.navlink:hover {
   font-family: NunitoRegular;
   text-decoration: none;
-  padding-bottom: 0px;
+  justify-items: center;
   color: #ffffff;
 }
 
-.welcome-message {
-  font-size: 25px;
-  text-align: center;
-  color: #d3d3d3;
+.dropdown-item {
+  text-decoration: none;
+  color: #000000;
 }
 
 .nav-buttons {
   display: flex;
   justify-content: space-between;
-}
-
-.user-dropdown {
-  justify-content: center;
 }
