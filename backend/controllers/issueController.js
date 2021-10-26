@@ -33,15 +33,15 @@ const getIssueById = asyncHandler(async (req, res) => {
   const issue = await Issue.findById(req.params.id);
 
   if (issue) {
-    res.json(issue);
+    return res.json(issue);
   } else {
-    res.status(400).json({ message: "Issue id does not exist" });
+    res.status(404).json({ message: "Issue id does not exist" });
   }
-  res.json(issue);
+  return res.json(issue);
 });
 
 const updateIssue = asyncHandler(async (req, res) => {
-  const { description, forDev, priority, isComplete } = req.body;
+  const { description, forDev, priority, isCompleted } = req.body;
   const issue = await Issue.findById(req.params.id);
 
   if (issue.user.toString() !== req.user._id.toString()) {
@@ -53,7 +53,7 @@ const updateIssue = asyncHandler(async (req, res) => {
     issue.description = description;
     issue.forDev = forDev;
     issue.priority = priority;
-    issue.isComplete = isComplete;
+    issue.isCompleted = isCompleted;
 
     const updatedIssue = await issue.save();
     res.json(updatedIssue);

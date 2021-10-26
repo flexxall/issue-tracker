@@ -5,7 +5,7 @@ import IssueTracker from "../IssueTracker/IssueTracker";
 import Loading from "../Loading";
 import ErrorMessage from "../ErrorMessage";
 import { useDispatch, useSelector } from "react-redux";
-import { listIssues } from "../../redux/actions/issuesActions";
+import { listIssuesAction } from "../../redux/actions/issuesActions";
 //import "./CompletedIssues";
 const CompletedIssues = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const CompletedIssues = () => {
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(listIssues());
+    dispatch(listIssuesAction());
     if (!userInfo) {
       history.push("/");
     }

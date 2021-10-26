@@ -11,7 +11,12 @@ const ErrorMessage = ({ color = "info", children }) => {
 
   return (
     <div>
-      <Alert color={color} isOpen={visible}>
+      <Alert
+        className="col-sm-6 m-auto"
+        style={{ textAlign: "center" }}
+        color={color}
+        isOpen={visible}
+      >
         <strong>{children}</strong>
       </Alert>
     </div>

@@ -14,6 +14,7 @@ import Login from "./components/Login/Login.js";
 import Register from "./components/Register/Register.js";
 
 import "./App.css";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -24,19 +25,17 @@ function App() {
         <Header setSearch={setSearch} />
         <div>
           <Route path="/" component={LandingPage} exact />
-          <Route path="/login" component={() => <Login />} />
-          <Route path="/register" component={() => <Register />} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/profile" component={Profile} />
           <Route
             path="/issues"
             component={() => <CurrentIssue search={search} />}
           />
-          <Route path="/addIssue" component={() => <AddIssue />} />
+          <Route path="/addIssue" component={AddIssue} />
           <Route path="/issue/:id" component={UpdateIssue} />
-          <Route path="/myIssues" component={() => <MyIssues />} />
-          <Route
-            path="/completedIssues"
-            component={() => <CompletedIssues />}
-          />
+          <Route path="/myIssues" component={MyIssues} />
+          <Route path="/completedIssues" component={CompletedIssues} />
         </div>
         <Footer />
       </Router>

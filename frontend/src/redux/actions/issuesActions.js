@@ -17,7 +17,7 @@ import {
   ISSUE_DELETE_FAIL,
 } from "../constants/issuesConstants";
 
-export const listIssues = () => async (dispatch, getState) => {
+export const listIssuesAction = () => async (dispatch, getState) => {
   try {
     dispatch({ type: CURRENT_ISSUES_REQUEST });
 
@@ -46,7 +46,36 @@ export const listIssues = () => async (dispatch, getState) => {
   }
 };
 
-export const createIssue =
+export const myIssuesAction = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: MY_ISSUES_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/issues`, config);
+
+    dispatch({
+      type: MY_ISSUES_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: MY_ISSUES_FAIL, payload: message });
+  }
+};
+
+export const createIssueAction =
   (description, forDev, priority) => async (dispatch, getState) => {
     try {
       dispatch({ type: ISSUE_CREATE_REQUEST });
@@ -81,7 +110,7 @@ export const createIssue =
     }
   };
 
-export const updateIssue =
+export const updateIssueAction =
   (id, description, forDev, priority, isCompleted) =>
   async (dispatch, getState) => {
     try {
@@ -119,44 +148,7 @@ export const updateIssue =
     }
   };
 
-export const getUserIssues = () => async (dispatch, getState) => {
-  try {
-    dispatch({ type: MY_ISSUES_REQUEST });
-
-    const {
-      userLogin: { userInfo },
-    } = getState();
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-
-    const { data } = await axios.get(
-      `/issues`,
-      // {
-      //   params: {
-      //     user: userInfo._id,
-      //   },
-      // },
-      config
-    );
-
-    dispatch({
-      type: MY_ISSUES_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
-    dispatch({ type: MY_ISSUES_FAIL, payload: message });
-  }
-};
-
-export const deleteIssue = (id) => async (dispatch, getState) => {
+export const deleteIssueAction = (id) => async (dispatch, getState) => {
   try {
     dispatch({
       type: ISSUE_DELETE_REQUEST,

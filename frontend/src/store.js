@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import {
   userLoginReducer,
   userRegisterReducer,
+  userUpdateReducer,
 } from "./redux/reducers/userReducers";
 import {
   currentIssuesReducer,
@@ -13,15 +14,23 @@ import {
 } from "./redux/reducers/issuesReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-const reducer = combineReducers({
+const appReducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  userUpdate: userUpdateReducer,
   currentIssues: currentIssuesReducer,
   myIssues: myIssuesReducer,
   issueCreate: issueCreateReducer,
   issueUpdate: issueUpdateReducer,
   issueDelete: issueDeleteReducer,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === "USER_LOGOUT") {
+    return appReducer(undefined, action);
+  }
+  return appReducer(state, action);
+};
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
@@ -34,7 +43,7 @@ const initialState = {
 const middleware = [thunk];
 
 const store = createStore(
-  reducer,
+  rootReducer,
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );

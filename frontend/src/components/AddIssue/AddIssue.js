@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Row, Col, Form, FormGroup, Label, Input } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createIssue } from "../../redux/actions/issuesActions";
+import { createIssueAction } from "../../redux/actions/issuesActions";
 import Loading from "../Loading";
 import ErrorMessage from "../ErrorMessage";
 
@@ -29,11 +29,11 @@ function AddIssue() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(createIssue(description, forDev, priority));
+    dispatch(createIssueAction(description, forDev, priority));
     if (!description || !forDev || !priority) return;
 
     resetHandler();
-    history.goBack("/issues");
+    history.push("/issues");
   };
 
   return (
