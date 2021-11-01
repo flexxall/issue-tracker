@@ -2,9 +2,6 @@ import {
   CURRENT_ISSUES_REQUEST,
   CURRENT_ISSUES_SUCCESS,
   CURRENT_ISSUES_FAIL,
-  MY_ISSUES_REQUEST,
-  MY_ISSUES_SUCCESS,
-  MY_ISSUES_FAIL,
   ISSUE_CREATE_REQUEST,
   ISSUE_CREATE_SUCCESS,
   ISSUE_CREATE_FAIL,
@@ -23,20 +20,6 @@ export const currentIssuesReducer = (state = { issues: [] }, action) => {
     case CURRENT_ISSUES_SUCCESS:
       return { loading: false, issues: action.payload };
     case CURRENT_ISSUES_FAIL:
-      return { loading: false, error: action.payload };
-
-    default:
-      return state;
-  }
-};
-
-export const myIssuesReducer = (state = { issues: [] }, action) => {
-  switch (action.type) {
-    case MY_ISSUES_REQUEST:
-      return { loading: true };
-    case MY_ISSUES_SUCCESS:
-      return { loading: false, issues: action.payload };
-    case MY_ISSUES_FAIL:
       return { loading: false, error: action.payload };
 
     default:

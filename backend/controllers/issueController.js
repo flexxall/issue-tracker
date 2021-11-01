@@ -6,11 +6,6 @@ const getAllIssues = asyncHandler(async (req, res) => {
   res.json(issues);
 });
 
-const getUserIssues = asyncHandler(async (req, res) => {
-  const issues = await Issue.find({ user: req.user._id });
-  res.json(issues);
-});
-
 const createIssue = asyncHandler(async (req, res) => {
   const { description, forDev, priority } = req.body;
 
@@ -80,11 +75,4 @@ const deleteIssue = asyncHandler(async (req, res) => {
   }
 });
 
-export {
-  getAllIssues,
-  getUserIssues,
-  createIssue,
-  getIssueById,
-  updateIssue,
-  deleteIssue,
-};
+export { getAllIssues, createIssue, getIssueById, updateIssue, deleteIssue };

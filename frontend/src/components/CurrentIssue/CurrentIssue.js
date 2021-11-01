@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 import IssueTracker from "../../components/IssueTracker/IssueTracker";
 import { Row, Col, Card, CardText, CardSubtitle, Button } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { listIssuesAction } from "../../redux/actions/issuesActions";
 import Loading from "../Loading";
 import ErrorMessage from "../ErrorMessage";
 
 import "./CurrentIssue.css";
 
-function CurrentIssue({ history, search }) {
+function CurrentIssue({ search }) {
   const dispatch = useDispatch();
-  //const history = useHistory();
+  const history = useHistory();
 
   const currentIssues = useSelector((state) => state.currentIssues);
   const { loading, issues, error } = currentIssues;
@@ -55,8 +55,7 @@ function CurrentIssue({ history, search }) {
                   <Row className="pt-1 px-2">
                     <Col>
                       <CardText>
-                        Assigned to: <span>{issue.forDev}</span> ID:{" "}
-                        {issue.user}
+                        Assigned to: <span>{issue.forDev}</span>
                       </CardText>
                     </Col>
                     <Col>
@@ -88,7 +87,8 @@ function CurrentIssue({ history, search }) {
                   </Row>
                   <Row className="pt-2">
                     <footer className="footer">
-                      Created on {issue.createdAt.substring(0, 10)}
+                      Created on {issue.createdAt.substring(0, 10)} / Updated on
+                      {issue.updatedAt.substring(0, 10)}
                     </footer>
                   </Row>
                 </Card>

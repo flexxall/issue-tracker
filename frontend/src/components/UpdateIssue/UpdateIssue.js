@@ -10,7 +10,6 @@ import {
   Label,
   Input,
 } from "reactstrap";
-//import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteIssueAction,
@@ -30,10 +29,9 @@ function UpdateIssue({ match, history }) {
   const [date, setDate] = useState("");
 
   const dispatch = useDispatch();
-  //const history = useHistory();
 
   const issueUpdate = useSelector((state) => state.issueUpdate);
-  const { loading, error } = issueUpdate;
+  const { loading, error, success } = issueUpdate;
 
   const issueDelete = useSelector((state) => state.issueDelete);
   const { loading: loadingDelete, error: errorDelete } = issueDelete;
@@ -77,7 +75,6 @@ function UpdateIssue({ match, history }) {
     );
     if (!description || !forDev || !priority) return;
     resetHandler();
-    history.push("/issues");
   };
 
   return (
@@ -87,7 +84,14 @@ function UpdateIssue({ match, history }) {
         <Row className="pt-1 px-2">
           <Col>
             <Form onSubmit={updateHandler}>
+              {loading && <Loading />}
+              {success && (
+                <ErrorMessage color="success">
+                  Updated Successfully
+                </ErrorMessage>
+              )}
               {error && <ErrorMessage color="danger">{error}</ErrorMessage>}
+
               {errorDelete && (
                 <ErrorMessage color="danger">{errorDelete}</ErrorMessage>
               )}
@@ -158,7 +162,6 @@ function UpdateIssue({ match, history }) {
               </Row>
               <Row className="complete-update">
                 <Col className="btn-row">
-                  {loading && <Loading />}
                   <Button
                     type="submit"
                     color="info"

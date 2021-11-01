@@ -10,7 +10,6 @@ import {
   issueCreateReducer,
   issueDeleteReducer,
   issueUpdateReducer,
-  myIssuesReducer,
 } from "./redux/reducers/issuesReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -19,7 +18,6 @@ const appReducer = combineReducers({
   userRegister: userRegisterReducer,
   userUpdate: userUpdateReducer,
   currentIssues: currentIssuesReducer,
-  myIssues: myIssuesReducer,
   issueCreate: issueCreateReducer,
   issueUpdate: issueUpdateReducer,
   issueDelete: issueDeleteReducer,

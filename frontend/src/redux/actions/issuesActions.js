@@ -3,9 +3,6 @@ import {
   CURRENT_ISSUES_REQUEST,
   CURRENT_ISSUES_SUCCESS,
   CURRENT_ISSUES_FAIL,
-  MY_ISSUES_REQUEST,
-  MY_ISSUES_SUCCESS,
-  MY_ISSUES_FAIL,
   ISSUE_CREATE_REQUEST,
   ISSUE_CREATE_SUCCESS,
   ISSUE_CREATE_FAIL,
@@ -43,35 +40,6 @@ export const listIssuesAction = () => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     dispatch({ type: CURRENT_ISSUES_FAIL, payload: message });
-  }
-};
-
-export const myIssuesAction = () => async (dispatch, getState) => {
-  try {
-    dispatch({ type: MY_ISSUES_REQUEST });
-
-    const {
-      userLogin: { userInfo },
-    } = getState();
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-
-    const { data } = await axios.get(`/issues`, config);
-
-    dispatch({
-      type: MY_ISSUES_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
-    dispatch({ type: MY_ISSUES_FAIL, payload: message });
   }
 };
 

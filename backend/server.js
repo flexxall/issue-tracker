@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import connectDB from "./config/connectDB.js";
 import userRouter from "./routes/userRouter.js";
 import issueRouter from "./routes/issueRouter.js";
-//import myIssuesRouter from "./routes/myIssuesRouter.js";
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 
 const app = express();
@@ -15,12 +14,9 @@ app.use(express.json());
 dotenv.config();
 connectDB();
 
-// app.get("/", (req, res) => {
-//   res.send("API is running..");
-// });
-//app.use("/myIssues", myIssuesRouter);
 app.use("/users", userRouter);
 app.use("/issues", issueRouter);
+app.use("/myIssues", issueRouter);
 
 app.use(notFound);
 app.use(errorHandler);

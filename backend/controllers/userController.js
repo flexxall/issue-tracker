@@ -60,6 +60,25 @@ export const authUser = asyncHandler(async (req, res) => {
   }
 });
 
+export const getUser = asyncHandler(async (req, res) => {
+  const user = await axios.get(`/users/${_id}`);
+
+  if (user) {
+    res.json({
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      userName: user.userName,
+      email: user.email,
+      isDev: user.isDev,
+      isAdmin: user.isAdmin,
+    });
+  } else {
+    res.status(400);
+    throw new Error("User does not exist");
+  }
+});
+
 export const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
 
@@ -69,6 +88,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     user.userName = req.body.userName || user.userName;
     user.email = req.body.email || user.email;
     user.isDev = req.body.isDev || user.isDev;
+    user.isAdmin = req.body.isAdmin || user.isAdmin;
 
     if (req.body.password) {
       user.password = req.body.password;
@@ -82,6 +102,8 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       lastName: updatedUser.lastName,
       userName: updatedUser.userName,
       email: updatedUser.email,
+      isDev: updatedUser.isDev,
+      isAdmin: updatedUser.isAdmin,
       token: generateToken(updatedUser._id),
     });
   } else {

@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 import Loading from "../Loading";
-import ErrorMessage from "../ErrorMessage";
+import LoginErrorMessage from "../LoginErrorMessage";
 import { login } from "../../redux/actions/userActions";
 import Logo from "../../media/images/logo.png";
 
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
@@ -39,13 +38,11 @@ const Login = () => {
           </Link>
         </Col>
       </Row>
-      {error && <ErrorMessage color="danger">{error}</ErrorMessage>}
+      {error && <LoginErrorMessage color="danger">{error}</LoginErrorMessage>}
       {loading && <Loading />}
       <Form className="login" onSubmit={submitHandler}>
         <Row>
-          {" "}
           <Col>
-            {" "}
             <FormGroup>
               <Label className="label">Email</Label>
               <Input

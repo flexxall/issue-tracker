@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { updateProfile } from "../../redux/actions/userActions";
 import ErrorMessage from "../ErrorMessage";
 import IssueTracker from "../IssueTracker/IssueTracker";
 import Loading from "../Loading";
 
 import "./Profile.css";
 
-const Profile = () => {
+const Profile = ({ history }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isDev, setisDev] = useState("");
 
   const dispatch = useDispatch();
 
@@ -25,8 +24,6 @@ const Profile = () => {
   const userUpdate = useSelector((state) => state.userUpdate);
   const { loading, error, success } = userUpdate;
 
-  const history = useHistory();
-
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
@@ -35,12 +32,16 @@ const Profile = () => {
       setLastName(userInfo.lastName);
       setUserName(userInfo.userName);
       setEmail(userInfo.email);
-      setisDev(userInfo.isDev);
     }
   }, [history, userInfo]);
 
   const submitHandler = async (event) => {
     event.preventDefault();
+
+    if (password === confirmPassword)
+      dispatch(
+        updateProfile({ firstName, lastName, userName, email, password })
+      );
   };
 
   return (
@@ -48,10 +49,12 @@ const Profile = () => {
       <IssueTracker title="My Profile">
         <div>
           <Form className="profile" onSubmit={submitHandler}>
-            {error && <ErrorMessage color="danger">{error}</ErrorMessage>}
             {loading && <Loading />}
+            {success && (
+              <ErrorMessage color="success">Updated Successfully</ErrorMessage>
+            )}
+            {error && <ErrorMessage color="danger">{error}</ErrorMessage>}
             <Row>
-              {" "}
               <Col>
                 <FormGroup className="col-6 float-start pe-2">
                   <Label className="label">First name</Label>

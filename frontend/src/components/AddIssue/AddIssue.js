@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { Button, Row, Col, Form, FormGroup, Label, Input } from "reactstrap";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createIssueAction } from "../../redux/actions/issuesActions";
 import Loading from "../Loading";
 import ErrorMessage from "../ErrorMessage";
-
-import "./AddIssue.css";
 import IssueTracker from "../IssueTracker/IssueTracker";
 
-function AddIssue() {
+import "./AddIssue.css";
+
+function AddIssue({ history }) {
   const [description, setDescription] = useState("");
   const [forDev, setForDev] = useState("");
   const [priority, setPriority] = useState("");
@@ -25,15 +24,13 @@ function AddIssue() {
     setPriority("");
   };
 
-  const history = useHistory();
-
   const submitHandler = (event) => {
     event.preventDefault();
     dispatch(createIssueAction(description, forDev, priority));
     if (!description || !forDev || !priority) return;
 
     resetHandler();
-    history.push("/issues");
+    history.push("/");
   };
 
   return (

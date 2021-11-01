@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Alert } from "reactstrap";
 
-const ErrorMessage = ({ color = "info", children }) => {
+const RegisterErrorMessage = ({ color = "info", children }) => {
   const [visible, setVisible] = useState(true);
   const history = useHistory();
 
   useEffect(() => {
     const timeId = setTimeout(() => {
       setVisible(false);
-      history.push("/issues");
+      localStorage.clear();
     }, 5000);
     return () => {
       clearTimeout(timeId);
@@ -34,4 +34,4 @@ const ErrorMessage = ({ color = "info", children }) => {
   );
 };
 
-export default ErrorMessage;
+export default RegisterErrorMessage;

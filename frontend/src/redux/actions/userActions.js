@@ -11,6 +11,7 @@ import {
   USER_UPDATE_SUCCESS,
 } from "../constants/userConstants";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -43,7 +44,7 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-  localStorage.clear();
+  localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
 };
 
@@ -69,6 +70,12 @@ export const register =
       dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 
       localStorage.setItem("userInfo", JSON.stringify(data));
+
+      const userInfo = localStorage.getItem("userInfo");
+      const history = useHistory();
+      if (userInfo) {
+        history.push("/issues");
+      }
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,

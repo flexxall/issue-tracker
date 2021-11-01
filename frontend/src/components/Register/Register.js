@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import Loading from "../Loading";
-import ErrorMessage from "../ErrorMessage";
+import RegisterErrorMessage from "../RegisterErrorMessage";
 import { useDispatch, useSelector } from "react-redux";
 import Logo from "../../media/images/logo.png";
 import { register } from "../../redux/actions/userActions";
@@ -20,8 +20,8 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error } = userLogin;
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, error } = userRegister;
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -41,12 +41,13 @@ const Register = () => {
           </Link>
         </Col>
       </Row>
-      {message && <ErrorMessage>{message}</ErrorMessage>}
-      {error && <ErrorMessage color="danger">{error}</ErrorMessage>}
+      {message && <RegisterErrorMessage>{message}</RegisterErrorMessage>}
+      {error && (
+        <RegisterErrorMessage color="danger">{error}</RegisterErrorMessage>
+      )}
       {loading && <Loading />}
       <Form className="register" onSubmit={submitHandler}>
         <Row>
-          {" "}
           <Col>
             <FormGroup className="col-6 float-start pe-2">
               <Label className="label">First name</Label>

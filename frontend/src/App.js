@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Footer from "./components/Footer/Footer";
-//import IssueTracker from "./components/IssueTracker/IssueTracker.js";
 import CurrentIssue from "./components/CurrentIssue/CurrentIssue";
 import AddIssue from "./components/AddIssue/AddIssue";
 import UpdateIssue from "./components/UpdateIssue/UpdateIssue.js";
