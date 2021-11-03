@@ -12,7 +12,7 @@ node_modules/
 
 # production
 /build
-/frontend/build
+
 
 # developement
 /developement
