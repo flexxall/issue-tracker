@@ -39,8 +39,7 @@ function MyIssues({ history }) {
                   <Row className="pt-1 px-2">
                     <Col>
                       <CardText>
-                        Assigned to: <span>{issue.forDev}</span> ID:{" "}
-                        {issue.user}
+                        Assigned to: <span>{issue.forDev}</span>
                       </CardText>
                     </Col>
                     <Col>

@@ -10,8 +10,8 @@ import { listIssuesAction } from "../../redux/actions/issuesActions";
 const CompletedIssues = ({ history }) => {
   const dispatch = useDispatch();
 
-  const myIssues = useSelector((state) => state.myIssues);
-  const { loading, issues, error } = myIssues;
+  const currentIssues = useSelector((state) => state.currentIssues);
+  const { loading, issues, error } = currentIssues;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
