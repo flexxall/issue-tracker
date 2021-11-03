@@ -16,7 +16,7 @@ function IssueTracker({ children, title }) {
     } else {
       return;
     }
-  }, []);
+  }, [userInfo.isAdmin, userInfo.isDev]);
 
   return (
     <Row>
