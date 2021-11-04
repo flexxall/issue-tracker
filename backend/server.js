@@ -1,5 +1,5 @@
 import express from "express";
-//import cors from "cors";
+import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/connectDB.js";
 import userRouter from "./routes/userRouter.js";
@@ -9,7 +9,7 @@ import path from "path";
 
 const app = express();
 
-//app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 dotenv.config();
