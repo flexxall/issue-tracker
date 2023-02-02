@@ -1,0 +1,30 @@
+form {
+  text-align: left;
+  width: 100%;
+  padding-inline: 50px;
+}
+
+label input,
+label select {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+form label {
+  margin-top: 20px;
+  margin-left: 5px;
+}
+
+.add-issue button {
+  width: 150px;
+  -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+}
+
+.input:focus {
+  outline: none !important;
+  border-color: #719ece;
+  box-shadow: 0 0 10px #719ece;
+}

@@ -1,0 +1,28 @@
+.container2 {
+  min-width: 369px;
+  background-color: #9b7979;
+}
+
+.logo-sm {
+  max-height: 115px;
+  width: auto;
+}
+
+body {
+  background: #d6e9ff;
+}
+
+* {
+  font-family: NunitoBold;
+}
+
+.btn {
+  -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}

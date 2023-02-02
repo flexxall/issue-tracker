@@ -1,0 +1,44 @@
+.logo {
+  max-height: 500px;
+  width: auto;
+}
+
+h1 {
+  font-size: 45px;
+  color: #007ae6;
+}
+
+.navbar {
+  border-radius: 3px;
+  padding-inline: 30px;
+  color: #007ae6;
+  background-color: #0a3255;
+  -webkit-box-shadow: 0px 3px 6px 3px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 6px 3px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 6px 3px rgba(0, 0, 0, 0.16);
+}
+
+.brand,
+.brand:hover {
+  font-size: 25px;
+  text-decoration: none;
+  color: #007ae6;
+}
+
+.navlink,
+.navlink:hover {
+  font-family: NunitoRegular;
+  text-decoration: none;
+  justify-items: center;
+  color: #ffffff;
+}
+
+.dropdown-item {
+  text-decoration: none;
+  color: #000000;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+}

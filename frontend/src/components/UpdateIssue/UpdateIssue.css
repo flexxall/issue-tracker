@@ -1,0 +1,52 @@
+.update-container {
+  max-width: 850px;
+  min-width: 369px;
+  margin: auto;
+  background: #f6f6f6;
+  -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
+  padding: 0px 50px 30px;
+}
+
+.checkbox {
+  text-align: center;
+}
+
+h2 {
+  font-size: 25px;
+  text-align: center;
+  color: #000000;
+}
+
+.complete-btn {
+  width: 150px;
+  -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+}
+
+.btn-row {
+  display: flex;
+  text-align: center;
+  justify-content: space-evenly;
+}
+
+.footer {
+  font-family: NunitoRegular;
+  text-align: center;
+  color: #959595;
+}
+
+.card {
+  padding: 10px;
+}
+
+.current-issues {
+  text-align: left;
+}
+
+.current-issues span {
+  margin-left: 10px;
+}

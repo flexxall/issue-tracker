@@ -1,0 +1,26 @@
+.register {
+  max-width: 700px;
+  margin: auto;
+}
+
+.form-row {
+  display: inline;
+}
+
+form label {
+  margin-top: 15px;
+}
+
+.input:focus {
+  outline: none !important;
+  border-color: #719ece;
+  box-shadow: 0 0 10px #719ece;
+}
+
+.register-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+}

@@ -1,0 +1,22 @@
+.login {
+  max-width: 400px;
+  margin: auto;
+}
+
+form label {
+  margin-top: 15px;
+}
+
+.input:focus {
+  outline: none !important;
+  border-color: #719ece;
+  box-shadow: 0 0 10px #719ece;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+}

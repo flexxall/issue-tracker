@@ -1,0 +1,18 @@
+.register {
+  max-width: 700px;
+  margin: auto;
+}
+
+.roll-title {
+  font-size: 25px;
+  font-family: NunitoRegular;
+  text-decoration: underline;
+  color: #000000;
+}
+
+.roll {
+  font-size: 25px;
+  font-family: NunitoRegular;
+  text-decoration: none;
+  color: #000000;
+}
