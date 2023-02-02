@@ -9,5 +9,5 @@ RUN npm i
 
 
 #Expose port and start application
-EXPOSE 5000
+EXPOSE 3000
 CMD [ "npm", "run", "dev" ]
